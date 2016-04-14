@@ -6,7 +6,7 @@
 #    By: jguthert <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2015/12/30 15:25:02 by jguthert          #+#    #+#              #
-#    Updated: 2016/03/16 16:41:30 by jguthert         ###   ########.fr        #
+#    Updated: 2016/04/13 15:51:57 by jguthert         ###   ########.fr        #
 #                                                                              #
 #******************************************************************************#
 
@@ -58,13 +58,13 @@ $(NAME): $(OBJ)
 $(OBJ): $(OBJPATH)/%.o : $(SRCPATH)/%.c
 	@mkdir -p $(dir $@)
 	@echo "\033[32m"
-	$(CC) -o $@ $(CFLAGS) $(INCLUDES) -c $<
+	@$(CC) -o $@ $(CFLAGS) $(INCLUDES) -c $<
 	@echo "\033[0m"
 
 clean:
-	/bin/rm -rf $(OBJPATH)
+	@/bin/rm -rf $(OBJPATH)
 
 fclean: clean
-	/bin/rm -rf $(NAME)
+	@/bin/rm -rf $(NAME)
 
 re: fclean all
