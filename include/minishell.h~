@@ -6,7 +6,7 @@
 /*   By: jguthert <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/02/08 17:56:10 by jguthert          #+#    #+#             */
-/*   Updated: 2016/04/14 15:39:46 by jguthert         ###   ########.fr       */
+/*   Updated: 2016/04/15 18:23:55 by jguthert         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,21 +23,23 @@
 
 typedef struct	s_env
 {
-	char		*path;
-}				t_env
+	char		*cmd;
+	char		*value;
+}				t_env;
 
 typedef struct	s_av
 {
-	char		*cmd;
-	char		**tab;
+	char		**av_l;
+	int			cmd;
 }				t_av;
 
 
 /*
-**Name:
-**File:
-**Desc:
+**Name: Env
+**File: get_env.c
+**Desc: Generate env or get it
 */
 
+int				get_env(t_list **e);
 
 #endif
