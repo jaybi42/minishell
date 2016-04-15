@@ -6,7 +6,7 @@
 /*   By: jguthert <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/02/08 17:56:10 by jguthert          #+#    #+#             */
-/*   Updated: 2016/04/14 15:39:46 by jguthert         ###   ########.fr       */
+/*   Updated: 2016/04/15 13:43:26 by jguthert         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,13 +23,14 @@
 
 typedef struct	s_env
 {
+	char		*cmd;
 	char		*path;
-}				t_env
+}				t_env;
 
 typedef struct	s_av
 {
-	char		*cmd;
-	char		**tab;
+	char		**av_l;
+	int			cmd;
 }				t_av;
 
 
