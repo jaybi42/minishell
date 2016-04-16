@@ -6,7 +6,7 @@
 /*   By: jguthert <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/12/01 15:27:22 by jguthert          #+#    #+#             */
-/*   Updated: 2016/01/03 13:32:07 by jguthert         ###   ########.fr       */
+/*   Updated: 2016/04/16 19:21:28 by jguthert         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ char	*ft_strtrim(char const *s)
 	while (*s == '\t' || *s == ' ' || *s == '\n')
 		s++;
 	if (!*s)
-		return ("");
+		return (NULL);
 	i = ft_strlen(s) - 1;
 	while (s[i] == '\t' || s[i] == ' ' || s[i] == '\n')
 		i--;

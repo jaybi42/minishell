@@ -6,7 +6,7 @@
 /*   By: jguthert <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/04/15 16:48:27 by jguthert          #+#    #+#             */
-/*   Updated: 2016/04/16 13:36:24 by jguthert         ###   ########.fr       */
+/*   Updated: 2016/04/16 18:41:05 by jguthert         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,7 +83,6 @@ static int			set_lenv(t_list **e)
 	if (tab != NULL)
 	free(tab);
 	tab = NULL;
-//	show_list(*e);
 	return (0);
 }
 
@@ -112,7 +111,6 @@ static int			set_genv(t_list **e, char **environ)
 		ft_lstadd_last(e, tamp);
 		i++;
 	}
-//	show_list(*e);
 	return (0);
 }
 
@@ -129,8 +127,8 @@ int					get_env(t_list **g_env, t_list **l_env)
 		if (set_genv(g_env, environ) == 1)
 			return (1);
 	}
-	show_list(*l_env);
+/*	show_list(*l_env);
 	ft_putendl("------------------------");
-	show_list(*g_env);
+	show_list(*g_env);*/
 	return (0);
 }
