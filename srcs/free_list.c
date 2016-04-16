@@ -1,34 +1,35 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   free_list.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jguthert <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2016/04/13 15:36:17 by jguthert          #+#    #+#             */
-/*   Updated: 2016/04/16 19:23:54 by jguthert         ###   ########.fr       */
+/*   Created: 2016/04/16 19:08:23 by jguthert          #+#    #+#             */
+/*   Updated: 2016/04/16 19:47:52 by jguthert         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
+#include <stdlib.h>
 
-int     	main(void)
+void		free_av(void *content, size_t size)
 {
-	t_list	*l_env;
-	t_list	*g_env;
-	t_list	*av;
-	char	*line;
+	t_av	*av;
+	char	*argv;
+	char	*cmd;
 
-	while (1)
+	(void)size;
+	av = (t_av *)content;
+	if (av != NULL)
 	{
-		ft_putstr("$>");
-		if (get_env(&g_env, &l_env) == 1)
-			return (1);
-		if (read_i(&av) == 1)
-			continue ;
-		if (shell(av, &g_env, &l_env) == 1)
-			return (1);
-		ft_lstdel(&av, free_av);
+		argv = (char *)av->av;
+		cmd = (char *)av->cmd;
+		if (argv != NULL)
+			ft_strdel(&argv);
+		if (cmd != NULL)
+			ft_strdel(&cmd);
+		free(content);
+		content = NULL;
 	}
-	return (0);
 }

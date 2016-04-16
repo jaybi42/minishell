@@ -6,7 +6,7 @@
 #    By: jguthert <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2015/12/30 15:25:02 by jguthert          #+#    #+#              #
-#    Updated: 2016/04/16 19:08:17 by jguthert         ###   ########.fr        #
+#    Updated: 2016/04/16 19:54:27 by jguthert         ###   ########.fr        #
 #                                                                              #
 #******************************************************************************#
 
@@ -48,6 +48,9 @@ SRCSFILES =				main.c			\
 						shell.c			\
 						builtin.c		\
 						free_list.c		\
+						bi_env.c		\
+						bi_cd.c			\
+						bi_exit.c		\
 
 ##=-  Process -=##
 

@@ -1,34 +1,38 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   builtin.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jguthert <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2016/04/13 15:36:17 by jguthert          #+#    #+#             */
-/*   Updated: 2016/04/16 19:23:54 by jguthert         ###   ########.fr       */
+/*   Created: 2016/04/16 17:03:36 by jguthert          #+#    #+#             */
+/*   Updated: 2016/04/16 19:58:54 by jguthert         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-int     	main(void)
-{
-	t_list	*l_env;
-	t_list	*g_env;
-	t_list	*av;
-	char	*line;
+static t_builtin const  g_builtin_list[5] = {
+    {"cd", bi_cd},
+    {"setenv", bi_setenv},
+    {"unsetenv", bi_unsetenv},
+    {"env", bi_setenv},
+    {"exit", bi_exit},
+};
 
-	while (1)
+int			builtin(t_av *av)
+{
+	int		i;
+
+	i = 0;
+	while (i < 5)
 	{
-		ft_putstr("$>");
-		if (get_env(&g_env, &l_env) == 1)
+		if (ft_strcmp(g_builtin_list[i].key, av->cmd) == 0)
+		{
+			g_builtin_list[i].value(av->av);
 			return (1);
-		if (read_i(&av) == 1)
-			continue ;
-		if (shell(av, &g_env, &l_env) == 1)
-			return (1);
-		ft_lstdel(&av, free_av);
+		}
+		i++;
 	}
 	return (0);
 }

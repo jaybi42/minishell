@@ -6,7 +6,7 @@
 /*   By: jguthert <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/02/08 17:56:10 by jguthert          #+#    #+#             */
-/*   Updated: 2016/04/16 19:10:11 by jguthert         ###   ########.fr       */
+/*   Updated: 2016/04/16 19:55:10 by jguthert         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,11 +68,16 @@ int				shell(t_list *av, t_list **g_env, t_list **l_env);
 
 /*
 **Name: builtin
-**File: builtin.c
+**File: builtin.c bi_cd.c bi_env.c bi_exit.c
 **Desc: Do the builtin if it exist
 */
 
-int				builtin(char *av);
+int				builtin(t_av *av);
+void			bi_cd(char *value);
+void			bi_env(char *value);
+void			bi_unsetenv(char *value);
+void			bi_setenv(char *value);
+void			bi_exit(char *value);
 
 /*
 **Name: Free list
