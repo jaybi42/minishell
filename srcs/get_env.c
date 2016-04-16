@@ -6,7 +6,7 @@
 /*   By: jguthert <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/04/15 16:48:27 by jguthert          #+#    #+#             */
-/*   Updated: 2016/04/15 21:50:42 by jguthert         ###   ########.fr       */
+/*   Updated: 2016/04/16 13:36:24 by jguthert         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,13 +18,25 @@
 #include <unistd.h>
 
 static t_env const	g_initenv[6] = {
-	{"PATH", NULL},
-	{"HOME", NULL},
-	{"USER", NULL},
-	{"LOGNAME", NULL},
-	{"PWD", NULL},
-	{"SHELL", NULL},
+	{"PATH", NULL, "PATH="},
+	{"HOME", NULL, "HOME="},
+	{"USER", NULL, "USER="},
+	{"LOGNAME", NULL, "LOGNAME="},
+	{"PWD", NULL, "PWD="},
+	{"SHELL", NULL, "SHELL="},
 };
+
+static void			show_list(t_list *e)
+{
+	while (e != NULL)
+	{
+		ft_putstr(((t_env *)e->content)->name);
+		ft_putchar('=');
+		ft_putendl(((t_env *)e->content)->value);
+		ft_putendl(((t_env *)e->content)->str);
+		e = e->next;
+	}
+}
 
 static char			**get_info(void)
 {
@@ -48,18 +60,7 @@ static char			**get_info(void)
 	return (tab);
 }
 
-static void			show_list(t_list *e)
-{
-	while (e != NULL)
-	{
-		ft_putstr(((t_env *)e->content)->cmd);
-		ft_putchar('=');
-		ft_putendl(((t_env *)e->content)->value);
-		e = e->next;
-	}
-}
-
-static int			set_myenv(t_list **e)
+static int			set_lenv(t_list **e)
 {
 	char			**tab;
 	t_env			env;
@@ -70,8 +71,9 @@ static int			set_myenv(t_list **e)
 	tab = get_info();
 	while (i < 6)
 	{
-		env.cmd = ft_strdup((char *)g_initenv[i].cmd);
+		env.name = ft_strdup((char *)g_initenv[i].name);
 		env.value = tab[i];
+		env.str = ft_strjoin((char *)g_initenv[i].str, tab[i]);
 		tamp = ft_lstnew((void *)&env, sizeof(env));
 		if (tamp == NULL)
 			return (1);
@@ -81,7 +83,7 @@ static int			set_myenv(t_list **e)
 	if (tab != NULL)
 	free(tab);
 	tab = NULL;
-	show_list(*e);
+//	show_list(*e);
 	return (0);
 }
 
@@ -90,23 +92,45 @@ static int			set_genv(t_list **e, char **environ)
 	t_env			env;
 	t_list			*tamp;
 	int				i;
+	int				j;
 
 	i = 0;
 	while (environ[i] != NULL)
 	{
+		env.str = ft_strdup(environ[i]);
+		j = 0;
+		while (environ[i][j] != '=' && environ[i][j] != '\0')
+			j++;
+		env.name = ft_strsub(environ[i], 0, j);
+		if (environ[i][j] != '\0' && environ[i][++j] != '\0')
+			env.value = ft_strsub(environ[i], j, ft_strlen(environ[i]) - j);
+		else
+			env.value = NULL;
+		tamp = ft_lstnew((void *)&env, sizeof(env));
+		if (tamp == NULL)
+			return (1);
+		ft_lstadd_last(e, tamp);
 		i++;
 	}
+//	show_list(*e);
 	return (0);
 }
 
-
-int					get_env(t_list **e)
+int					get_env(t_list **g_env, t_list **l_env)
 {
     extern char		**environ;
 
-    if (*environ == NULL)
-        set_myenv(e);
-	while (*environ != NULL)
-		set_genv(e, environ);
-    return (0);
+	*l_env = NULL;
+	*g_env = NULL;
+	if (set_lenv(l_env) == 1)
+		return (1);
+	if (*environ != NULL)
+	{
+		if (set_genv(g_env, environ) == 1)
+			return (1);
+	}
+	show_list(*l_env);
+	ft_putendl("------------------------");
+	show_list(*g_env);
+	return (0);
 }

@@ -6,13 +6,13 @@
 /*   By: jguthert <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/04/13 15:36:17 by jguthert          #+#    #+#             */
-/*   Updated: 2016/04/15 21:16:28 by jguthert         ###   ########.fr       */
+/*   Updated: 2016/04/16 13:42:04 by jguthert         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-static int	split_cmd(t_av *av, char *line)
+static int	split_line(t_av *av, char *line)
 {
 	int		i;
 	char	*temp;
@@ -32,12 +32,13 @@ static int	split_cmd(t_av *av, char *line)
 	return (0);
 }
 
-static int	do_shell(t_av av, t_list **e)
+static int	do_shell(t_av av, t_list **g_env, t_list **l_env)
 {
 	int		ret;
 
 	(void)av;
-	(void)**e;
+	(void)**g_env;
+	(void)**l_env;
 	ret = 0;
 /*	(void)**e;
 	(void)av;
@@ -52,18 +53,21 @@ static int	do_shell(t_av av, t_list **e)
 	return (0);
 }
 
+static void	free_av(t_av *av)
+{
+}
 
 int         main(void)
 {
-	t_list	*e;
+	t_list	*l_env;
+	t_list	*g_env;
 	t_av	av;
 	char	*line;
 
-	e = NULL;
     while (1)
     {
         ft_putstr("$>");
-        if (get_env(&e) == 1)
+        if (get_env(&g_env, &l_env) == 1)
             return (1);
 		line = NULL;
 		while (line == NULL)
@@ -71,11 +75,12 @@ int         main(void)
 			if (get_next_line(0, &line) < 0)
 				return (1);
 		}
-        if (split_cmd(&av, line) == 1)
+        if (split_line(&av, line) == 1)
             continue ;
-		if (do_shell(av, &e) == 1)
+		if (do_shell(av, &g_env, &l_env) == 1)
 			return (1);
-//		free_av(&av);
+		while (av.cmd-- >= 0)
+			ft_strdel(&av.av_l[cmd]);
     }
     return (0);
 }
