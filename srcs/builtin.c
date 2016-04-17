@@ -6,7 +6,7 @@
 /*   By: jguthert <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/04/16 17:03:36 by jguthert          #+#    #+#             */
-/*   Updated: 2016/04/16 19:58:54 by jguthert         ###   ########.fr       */
+/*   Updated: 2016/04/17 18:27:20 by jguthert         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ int			builtin(t_av *av)
 	{
 		if (ft_strcmp(g_builtin_list[i].key, av->cmd) == 0)
 		{
-			g_builtin_list[i].value(av->av);
+			g_builtin_list[i].value(av->arg);
 			return (1);
 		}
 		i++;

@@ -6,7 +6,7 @@
 #    By: jguthert <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2015/12/12 14:57:16 by jguthert          #+#    #+#              #
-#    Updated: 2016/04/16 18:07:20 by jguthert         ###   ########.fr        #
+#    Updated: 2016/04/17 15:16:55 by jguthert         ###   ########.fr        #
 #                                                                              #
 #******************************************************************************#
 
@@ -63,7 +63,8 @@ SRCFILES = 	ft_isprint.c ft_memset.c ft_bzero.c			\
 			ft_strndup.c get_next_line.c ft_getnbr.c	\
 			ft_ulltoa_base.c ftv_print.c ftv_insert.c	\
 			ftv_del.c ft_error.c ft_nbrlen.c			\
-			ft_isblank.c ft_isspace.c					\
+			ft_isblank.c ft_isspace.c 					\
+			ft_strsplit_space.c ft_strsplit_blank.c		\
 
 ##=- Process -=##
 

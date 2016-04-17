@@ -6,13 +6,13 @@
 /*   By: jguthert <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/04/16 19:53:32 by jguthert          #+#    #+#             */
-/*   Updated: 2016/04/16 19:53:44 by jguthert         ###   ########.fr       */
+/*   Updated: 2016/04/17 15:28:07 by jguthert         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-void		bi_exit(char *value)
+void		bi_exit(char **av)
 {
 	return ;
 }

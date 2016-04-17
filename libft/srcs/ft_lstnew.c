@@ -6,7 +6,7 @@
 /*   By: jguthert <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/12/01 15:15:25 by jguthert          #+#    #+#             */
-/*   Updated: 2016/01/03 13:27:40 by jguthert         ###   ########.fr       */
+/*   Updated: 2016/04/17 16:56:37 by jguthert         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,8 @@ t_list	*ft_lstnew(void const *content, size_t content_size)
 		else
 		{
 			new_content = ft_memalloc(content_size);
+			if (new_content == NULL)
+				ft_putendl_fd("C'EST NULL", 2);
 			ft_memcpy(new_content, content, content_size);
 			newlist->content = new_content;
 			newlist->content_size = content_size;

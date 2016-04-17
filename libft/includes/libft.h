@@ -6,7 +6,7 @@
 /*   By: jguthert <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/12/13 14:10:31 by jguthert          #+#    #+#             */
-/*   Updated: 2016/03/07 18:19:37 by jguthert         ###   ########.fr       */
+/*   Updated: 2016/04/17 15:22:06 by jguthert         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,6 +76,8 @@ char				*ft_strrchr(const char *s, int c);
 char				*ft_strtrim(char const *s);
 char				*ft_strjoin(char const *s1, char const *s2);
 char				**ft_strsplit(char const *s, char c);
+char				**ft_strsplit_blank(char const *s);
+char				**ft_strsplit_space(char const *s);
 char				*ft_strstr(const char *s1, const char *s2);
 char				*ft_strnstr(const char *s1, const char *s2, size_t n);
 char				*ft_strsub(char const *s, unsigned int start, size_t len);
@@ -113,6 +115,8 @@ int					ft_getnbr(char *str);
 **	##=-  Casse  -=##
 */
 
+int					ft_isspace(int c);
+int					ft_isblank(int c);
 int					ft_isalpha(int c);
 int					ft_isdigit(int c);
 int					ft_isalnum(int c);

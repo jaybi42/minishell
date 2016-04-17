@@ -6,7 +6,7 @@
 /*   By: jguthert <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/02/08 17:56:10 by jguthert          #+#    #+#             */
-/*   Updated: 2016/04/16 19:55:10 by jguthert         ###   ########.fr       */
+/*   Updated: 2016/04/17 19:15:48 by jguthert         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,8 +38,8 @@ typedef struct	s_builtin
 
 typedef struct	s_av
 {
-	char		*av;
 	char		*cmd;
+	char		**arg;
 }				t_av;
 
 /*
@@ -73,11 +73,11 @@ int				shell(t_list *av, t_list **g_env, t_list **l_env);
 */
 
 int				builtin(t_av *av);
-void			bi_cd(char *value);
-void			bi_env(char *value);
-void			bi_unsetenv(char *value);
-void			bi_setenv(char *value);
-void			bi_exit(char *value);
+void			bi_cd(char **av);
+void			bi_env(char **av);
+void			bi_unsetenv(char **av);
+void			bi_setenv(char **av);
+void			bi_exit(char **av);
 
 /*
 **Name: Free list
