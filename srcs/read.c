@@ -6,41 +6,11 @@
 /*   By: jguthert <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/04/16 16:07:22 by jguthert          #+#    #+#             */
-/*   Updated: 2016/04/17 19:26:45 by jguthert         ###   ########.fr       */
+/*   Updated: 2016/04/17 19:37:29 by jguthert         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
-
-/*
-static void	show_list(t_list *av)
-{
-	if (av == NULL)
-		ft_putendl("list NULL");
-	while (av != NULL)
-	{
-		ft_putchar('[');
-		ft_putstr(((t_av *)av->content)->cmd);
-		ft_putchar(']');
-		ft_putstr("    ");
-		if (((t_av *)av->content)->arg != NULL)
-		{
-			while ((*((t_av *)av->content)->arg) != NULL)
-			{
-				ft_putchar('[');
-				ft_putstr(*((t_av *)av->content)->arg);
-				((t_av *)av->content)->arg++;
-				if (*((t_av *)av->content)->arg != NULL)
-					ft_putstr("]  ");
-				else
-					ft_putendl("]");
-			}
-		}
-		else
-			ft_putendl("[]");
-		av = av->next;
-	}
-}*/
 
 static void	fill_argv(t_av *argv, char *str)
 {
@@ -78,7 +48,6 @@ static int	split_line(t_list **av, char *line)
 		ft_lstadd_last(av, temp);
 		i++;
 	}
-//	show_list(*av);
 	return (0);
 }
 
