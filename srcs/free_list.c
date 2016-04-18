@@ -6,7 +6,7 @@
 /*   By: jguthert <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/04/16 19:08:23 by jguthert          #+#    #+#             */
-/*   Updated: 2016/04/18 17:17:05 by jguthert         ###   ########.fr       */
+/*   Updated: 2016/04/18 18:25:33 by jguthert         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,8 +16,6 @@
 void		free_av(void *content, size_t size)
 {
 	t_av	*av;
-	char	**argv;
-	char	*cmd;
 	int		i;
 
 	i = 0;
@@ -25,19 +23,33 @@ void		free_av(void *content, size_t size)
 	av = (t_av *)content;
 	if (av != NULL)
 	{
-		argv = (char **)av->arg;
-		cmd = (char *)av->cmd;
-		if (argv != NULL)
+		if (av->arg != NULL)
 		{
-			while (argv[i] != NULL)
+			while (av->arg[i] != NULL)
 			{
-				ft_strdel(&*argv);
+				ft_strdel(&av->arg[i]);
 				i++;
 			}
-			ft_strdel(argv);
+			ft_strdel(av->arg);
 		}
-		if (cmd != NULL)
-			ft_strdel(&cmd);
+		if (av->cmd != NULL)
+			ft_strdel(&av->cmd);
+		free(content);
+		content = NULL;
+	}
+}
+
+void		free_env(void *content, size_t size)
+{
+	(void)size;
+	if (((t_env *)content) != NULL)
+	{
+		if (((t_env *)content)->name != NULL)
+			ft_strdel(&((t_env *)content)->name);
+		if (((t_env *)content)->value != NULL)
+			ft_strdel(&((t_env *)content)->value);
+		if (((t_env *)content)->str != NULL)
+			ft_strdel(&((t_env *)content)->str);
 		free(content);
 		content = NULL;
 	}

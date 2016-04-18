@@ -6,7 +6,7 @@
 /*   By: jguthert <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/02/08 17:56:10 by jguthert          #+#    #+#             */
-/*   Updated: 2016/04/18 17:13:30 by jguthert         ###   ########.fr       */
+/*   Updated: 2016/04/18 18:16:47 by jguthert         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,9 +83,10 @@ int				bi_exit(char **av, int argc, t_list **g_env, t_list **l_env);
 /*
 **Name: Free list
 **File: free_list.c
-**Desc: free list functions to work with ft_lstdel()
+**Desc: free list functions to work with ft_lstdel() && ft_lstdelone()
 */
 
 void			free_av(void *content, size_t size);
+void			free_env(void *content, size_t size);
 
 #endif
