@@ -6,7 +6,7 @@
 /*   By: jguthert <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/02/08 17:56:10 by jguthert          #+#    #+#             */
-/*   Updated: 2016/04/18 16:48:57 by jguthert         ###   ########.fr       */
+/*   Updated: 2016/04/18 17:13:30 by jguthert         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ typedef struct	s_env
 	char		*str;
 }				t_env;
 
-typedef int		(*t_bi_fptr)();
+typedef int		(*t_bi_fptr)(char **, int, t_list **, t_list **);
 
 typedef struct	s_builtin
 {
@@ -74,11 +74,11 @@ int				shell(t_list *av, t_list **g_env, t_list **l_env);
 */
 
 int				builtin(t_av *av, t_list **g_env, t_list **l_env);
-void			bi_cd(char **av, int argc, t_list **g_env, t_list **l_env);
-void			bi_env(char **av, int argc, t_list **g_env, t_list **l_env);
-void			bi_unsetenv(char **av, int argc, t_list **g_env, t_list **l_env);
-void			bi_setenv(char **av, int argc, t_list **g_env, t_list **l_env);
-void			bi_exit(char **av, int argc, t_list **g_env, t_list **l_env);
+int				bi_cd(char **av, int argc, t_list **g_env, t_list **l_env);
+int				bi_env(char **av, int argc, t_list **g_env, t_list **l_env);
+int				bi_unsetenv(char **av, int argc, t_list **g_env, t_list **l_env);
+int				bi_setenv(char **av, int argc, t_list **g_env, t_list **l_env);
+int				bi_exit(char **av, int argc, t_list **g_env, t_list **l_env);
 
 /*
 **Name: Free list

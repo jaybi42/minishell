@@ -6,7 +6,7 @@
 #    By: jguthert <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2015/12/30 15:25:02 by jguthert          #+#    #+#              #
-#    Updated: 2016/04/16 19:54:27 by jguthert         ###   ########.fr        #
+#    Updated: 2016/04/18 17:17:39 by jguthert         ###   ########.fr        #
 #                                                                              #
 #******************************************************************************#
 
@@ -57,16 +57,16 @@ SRCSFILES =				main.c			\
 all: $(NAME)
 
 $(NAME): $(OBJ)
-	@echo "\n\033[33mProcessing\n\033[0m"
+#	@echo "\n\033[33mProcessing\n\033[0m"
 	@$(MAKE) -C libft/
 	@$(CC) -o $@ $(CFLAGS) $(OBJ) $(LIBS)
-	@echo "\n\033[33mEnd of the Process\n\033[0m"
+#	@echo "\n\033[33mEnd of the Process\n\033[0m"
 
 $(OBJ): $(OBJPATH)/%.o : $(SRCPATH)/%.c
 	@mkdir -p $(dir $@)
-	@echo "\033[32m"
+#	@echo "\033[32m"
 	@$(CC) -o $@ $(CFLAGS) $(INCLUDES) -c $<
-	@echo "\033[0m"
+#	@echo "\033[0m"
 
 clean:
 	@/bin/rm -rf $(OBJPATH)

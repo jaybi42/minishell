@@ -6,7 +6,7 @@
 /*   By: jguthert <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/04/15 16:48:27 by jguthert          #+#    #+#             */
-/*   Updated: 2016/04/16 18:41:05 by jguthert         ###   ########.fr       */
+/*   Updated: 2016/04/18 17:15:11 by jguthert         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,18 +25,6 @@ static t_env const	g_initenv[6] = {
 	{"PWD", NULL, "PWD="},
 	{"SHELL", NULL, "SHELL="},
 };
-
-static void			show_list(t_list *e)
-{
-	while (e != NULL)
-	{
-		ft_putstr(((t_env *)e->content)->name);
-		ft_putchar('=');
-		ft_putendl(((t_env *)e->content)->value);
-		ft_putendl(((t_env *)e->content)->str);
-		e = e->next;
-	}
-}
 
 static char			**get_info(void)
 {

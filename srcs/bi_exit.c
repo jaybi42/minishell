@@ -6,13 +6,13 @@
 /*   By: jguthert <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/04/16 19:53:32 by jguthert          #+#    #+#             */
-/*   Updated: 2016/04/18 16:52:32 by jguthert         ###   ########.fr       */
+/*   Updated: 2016/04/18 17:20:39 by jguthert         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-void		bi_exit(char **av, int argc, t_list **g_env, t_list **l_env)
+int			bi_exit(char **av, int argc, t_list **g_env, t_list **l_env)
 {
-	return ;
+	return (0);
 }

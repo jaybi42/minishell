@@ -6,7 +6,7 @@
 /*   By: jguthert <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/04/13 15:36:17 by jguthert          #+#    #+#             */
-/*   Updated: 2016/04/18 12:29:13 by jguthert         ###   ########.fr       */
+/*   Updated: 2016/04/18 17:26:45 by jguthert         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,13 +14,14 @@
 
 static void show_list(t_list *av)
 {
-	int i = 0;
-	t_av *avs;
+	int		i;
+	t_av	*avs;
 
     if (av == NULL)
         ft_putendl("list NULL");
     while (av != NULL)
     {
+		i = 0;
 		avs = (t_av *)av->content;
 		ft_putchar('[');
         ft_putstr(avs->cmd);
@@ -49,7 +50,6 @@ int     	main(void)
 	t_list	*l_env;
 	t_list	*g_env;
 	t_list	*av;
-	char	*line;
 
 	while (1)
 	{
