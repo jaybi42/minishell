@@ -6,37 +6,51 @@
 /*   By: jguthert <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/04/16 19:50:22 by jguthert          #+#    #+#             */
-/*   Updated: 2016/04/17 20:30:36 by jguthert         ###   ########.fr       */
+/*   Updated: 2016/04/18 16:52:50 by jguthert         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 #include "unistd.h"
 
-void		bi_cd(char **av, int argc)
+static void	mod_pwd(char *pwd, t_list **g_e, t_list **l_e)
+{
+	t_list	*temp;
+
+	temp = *l_e;
+	while (temp != NULL &&
+		   ft_strcmp(((t_env *)temp->content)->name, "PWD") != 0)
+		temp = temp->next;
+	if (temp == NULL)
+		return ;
+	bi_setenv((char **){"PWD", pwd}, g_e, l_e);
+	bi_setenv((char **){"OLDPWD", ((t_env *)temp->content)->value}, g_e, l_e);
+}
+
+void		bi_cd(char **arg, int argc, t_list **g_env, t_list **l_env)
 {
 	if (argc > 2)
 		ft_putendl("cd: too many arguments");
 	else if (argc > 1)
 	{
 		ft_putstr("cd: string not in pwd: ");
-		ft_putendl(av[0]);
+		ft_putendl(arg[0]);
 	}
-	else if (argc == 1 && access(av[0], F_OK) == -1)
+	else if (argc == 1 && access(arg[0], F_OK) == -1)
 	{
 		ft_putstr("cd: no such file or directory: ");
-		ft_putendl(av[0]);
+		ft_putendl(arg[0]);
 	}
-	else if (argc == 1 && access(av[0], X_OK) == -1)
+	else if (argc == 1 && access(arg[0], X_OK) == -1)
 	{
 		ft_putstr("cd: permission denied: ");
-		ft_putendl(av[0]);
+		ft_putendl(arg[0]);
 	}
-	else if (av[0] == NULL || av[0] == "~")
+	else if (arg[0] == NULL || arg[0] == "~")
 		ft_putendl("Link to Home to do");
-	else if (av[0] != NULL)
+	else if (arg[0] != NULL)
 	{
-		chdir(av[0]);
-//		add_env("OLDPWD",PWD);
+		chdir(arg[0]);
+		mod_pwd(arg[0], g_env, l_env);
 	}
 }
