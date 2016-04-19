@@ -6,7 +6,7 @@
 /*   By: jguthert <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/02/08 17:56:10 by jguthert          #+#    #+#             */
-/*   Updated: 2016/04/18 18:16:47 by jguthert         ###   ########.fr       */
+/*   Updated: 2016/04/19 19:20:35 by jguthert         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,13 @@ typedef struct	s_env
 	char		*str;
 }				t_env;
 
+typedef struct	s_error
+{
+	bool		cmd;
+	char		*str;
+	bool		arg;
+}				t_error;
+
 typedef int		(*t_bi_fptr)(char **, int, t_list **, t_list **);
 
 typedef struct	s_builtin
@@ -44,20 +51,13 @@ typedef struct	s_av
 }				t_av;
 
 /*
-**Name: Env
-**File: get_env.c
-**Desc: Generate env or get it
-*/
-
-int				get_env(t_list **g_env, t_list **l_env);
-
-/*
-**Name: Parse incoming
-**File: read.c
-**Desc: Parse incoming
+**Name: Parsing
+**File: read.c get_env.c
+**Desc: Parse read and env
 */
 
 int				read_i(t_list **av);
+int				get_env(t_list **g_env, t_list **l_env);
 
 /*
 **Name: Shell
@@ -88,5 +88,13 @@ int				bi_exit(char **av, int argc, t_list **g_env, t_list **l_env);
 
 void			free_av(void *content, size_t size);
 void			free_env(void *content, size_t size);
+
+/*
+**Name: Print error
+**File: print_error.c
+**Desc: print error from builtins
+*/
+
+void			print_error(t_av *av, int error);
 
 #endif

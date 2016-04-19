@@ -6,7 +6,7 @@
 /*   By: jguthert <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/04/13 15:36:17 by jguthert          #+#    #+#             */
-/*   Updated: 2016/04/18 17:26:45 by jguthert         ###   ########.fr       */
+/*   Updated: 2016/04/19 16:39:43 by jguthert         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,7 +58,7 @@ int     	main(void)
 			return (1);
 		if (read_i(&av) == 1)
 			continue ;
-		show_list(av);
+//		show_list(av);
 		if (shell(av, &g_env, &l_env) == 1)
 			return (1);
 		ft_lstdel(&av, free_av);
