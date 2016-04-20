@@ -6,7 +6,7 @@
 /*   By: jguthert <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/04/13 15:36:17 by jguthert          #+#    #+#             */
-/*   Updated: 2016/04/19 16:39:43 by jguthert         ###   ########.fr       */
+/*   Updated: 2016/04/20 16:38:56 by jguthert         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,11 +51,11 @@ int     	main(void)
 	t_list	*g_env;
 	t_list	*av;
 
+	if (get_env(&g_env, &l_env) == 1)
+		return (1);
 	while (1)
 	{
 		ft_putstr("$>");
-		if (get_env(&g_env, &l_env) == 1)
-			return (1);
 		if (read_i(&av) == 1)
 			continue ;
 //		show_list(av);

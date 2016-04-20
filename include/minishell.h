@@ -6,7 +6,7 @@
 /*   By: jguthert <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/02/08 17:56:10 by jguthert          #+#    #+#             */
-/*   Updated: 2016/04/20 13:31:03 by jguthert         ###   ########.fr       */
+/*   Updated: 2016/04/20 16:29:32 by jguthert         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,7 @@ typedef struct	s_av
 	int			argc;
 }				t_av;
 
-typedef int		(*t_bi_fptr)(t_av *, t_list **, t_list **);
+typedef int		(*t_bi_fptr)();
 
 typedef struct	s_builtin
 {

@@ -6,7 +6,7 @@
 /*   By: jguthert <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/04/20 13:28:44 by jguthert          #+#    #+#             */
-/*   Updated: 2016/04/20 13:37:19 by jguthert         ###   ########.fr       */
+/*   Updated: 2016/04/20 16:43:15 by jguthert         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,7 @@ int		bi_setenv(t_av *av, t_list **g_env, t_list **l_env)
 	(void)l_env;
 	if (av->argc == 0)
 		bi_env(av, g_env, l_env);
-	if (av->argc > 2)
+	else if (av->argc > 2)
 		print_error(av, 0);
 	else if (av->argc >= 1 && ft_isalpha(*av->arg[0]) == 0)
 		print_error(av, 5);

@@ -6,22 +6,11 @@
 /*   By: jguthert <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/04/16 19:53:06 by jguthert          #+#    #+#             */
-/*   Updated: 2016/04/20 13:30:22 by jguthert         ###   ########.fr       */
+/*   Updated: 2016/04/20 16:44:40 by jguthert         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
-
-static void	show_env(t_list *env)
-{
-	ft_putendl("-----START-----");
-	while (env != NULL)
-	{
-		ft_putendl(((t_env *)env->content)->str);
-		env = env->next;
-	}
-	ft_putendl("-----FINISH-----");
-}
 
 int			bi_env(t_av *av, t_list **g_env, t_list **l_env)
 {
