@@ -6,7 +6,7 @@
 /*   By: jguthert <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/12/13 14:10:31 by jguthert          #+#    #+#             */
-/*   Updated: 2016/04/17 15:22:06 by jguthert         ###   ########.fr       */
+/*   Updated: 2016/04/20 13:54:50 by jguthert         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -124,6 +124,7 @@ int					ft_isascii(int c);
 int					ft_isprint(int c);
 int					ft_toupper(int c);
 int					ft_tolower(int c);
+int					ft_strisalnum(char *str);
 
 /*
 **	##=-  Memory  -=##

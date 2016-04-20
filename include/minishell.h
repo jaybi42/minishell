@@ -6,7 +6,7 @@
 /*   By: jguthert <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/02/08 17:56:10 by jguthert          #+#    #+#             */
-/*   Updated: 2016/04/19 19:20:35 by jguthert         ###   ########.fr       */
+/*   Updated: 2016/04/20 13:31:03 by jguthert         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,20 +35,20 @@ typedef struct	s_error
 	bool		arg;
 }				t_error;
 
-typedef int		(*t_bi_fptr)(char **, int, t_list **, t_list **);
-
-typedef struct	s_builtin
-{
-	char		*key;
-	t_bi_fptr	value;
-}				t_builtin;
-
 typedef struct	s_av
 {
 	char		*cmd;
 	char		**arg;
 	int			argc;
 }				t_av;
+
+typedef int		(*t_bi_fptr)(t_av *, t_list **, t_list **);
+
+typedef struct	s_builtin
+{
+	char		*key;
+	t_bi_fptr	value;
+}				t_builtin;
 
 /*
 **Name: Parsing
@@ -69,16 +69,16 @@ int				shell(t_list *av, t_list **g_env, t_list **l_env);
 
 /*
 **Name: builtin
-**File: builtin.c bi_cd.c bi_env.c bi_exit.c
+**File: builtin.c bi_*.c
 **Desc: Do the builtin if it exist
 */
 
 int				builtin(t_av *av, t_list **g_env, t_list **l_env);
-int				bi_cd(char **av, int argc, t_list **g_env, t_list **l_env);
-int				bi_env(char **av, int argc, t_list **g_env, t_list **l_env);
-int				bi_unsetenv(char **av, int argc, t_list **g_env, t_list **l_env);
-int				bi_setenv(char **av, int argc, t_list **g_env, t_list **l_env);
-int				bi_exit(char **av, int argc, t_list **g_env, t_list **l_env);
+int				bi_cd(t_av *av, t_list **g_env, t_list **l_env);
+int				bi_env(t_av *av, t_list **g_env, t_list **l_env);
+int				bi_unsetenv(t_av *av, t_list **g_env, t_list **l_env);
+int				bi_setenv(t_av *av, t_list **g_env, t_list **l_env);
+int				bi_exit(t_av *av, t_list **g_env, t_list **l_env);
 
 /*
 **Name: Free list

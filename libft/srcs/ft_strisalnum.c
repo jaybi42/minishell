@@ -1,21 +1,24 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   bi_exit.c                                          :+:      :+:    :+:   */
+/*   ft_strisalnum.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jguthert <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2016/04/16 19:53:32 by jguthert          #+#    #+#             */
-/*   Updated: 2016/04/20 13:32:49 by jguthert         ###   ########.fr       */
+/*   Created: 2016/04/20 12:56:25 by jguthert          #+#    #+#             */
+/*   Updated: 2016/04/20 13:51:03 by jguthert         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "minishell.h"
+#include "libft.h"
 
-int			bi_exit(t_av *av, t_list **g_env, t_list **l_env)
+int		ft_strisalnum(char *str)
 {
-	(void)av;
-	(void)g_env;
-	(void)l_env;
-	return (0);
+	while (*str != '\0')
+	{
+		if (ft_isalnum(*str) == 0)
+			return (0);
+		str++;
+	}
+	return (1);
 }
