@@ -6,7 +6,7 @@
 #    By: jguthert <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2015/12/30 15:25:02 by jguthert          #+#    #+#              #
-#    Updated: 2016/04/20 13:31:20 by jguthert         ###   ########.fr        #
+#    Updated: 2016/04/21 11:41:46 by jguthert         ###   ########.fr        #
 #                                                                              #
 #******************************************************************************#
 
@@ -54,6 +54,7 @@ SRCSFILES =				main.c			\
 						bi_cd.c			\
 						bi_exit.c		\
 						print_error.c	\
+						print_prompt.c	\
 
 ##=-  Process -=##
 

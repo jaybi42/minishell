@@ -6,32 +6,40 @@
 /*   By: jguthert <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/04/16 19:50:22 by jguthert          #+#    #+#             */
-/*   Updated: 2016/04/20 13:32:37 by jguthert         ###   ########.fr       */
+/*   Updated: 2016/04/21 12:43:41 by jguthert         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 #include "unistd.h"
 
-/*
 static int	mod_pwd(char *pwd, t_list **g_e, t_list **l_e)
 {
-	t_list	*temp;
+//	t_list	*temp;
+//	t_av	*av;
 	int		ret;
+	t_av const av[1] = {
+		{"setenv", ((char **){"PWD", pwd}), 2}
+		};
 
-	temp = *l_e;
+	ret = bi_setenv((t_av *)av, g_e, l_e);
+	return (ret);
+/*	temp = *l_e;
 	while (temp != NULL &&
 		   ft_strcmp(((t_env *)temp->content)->name, "PWD") != 0)
 		temp = temp->next;
 	if (temp == NULL)
 		return (0);
-	ret = bi_setenv((char **){"PWD", pwd}, 2, g_e, l_e);
+	av->argc = 2;
+	av->arg[0] = ft_strdup("PWD");
+	av->argv[1] = ft_strdup(pwd);
+	av->cmd = ft_strdup("setenv");
 	if (ret == -1)
 		return (-1);
 	ret = bi_setenv((char **){"OLDPWD",	((t_env *)temp->content)->value}, 2, g_e, l_e);
 	if (ret == -1)
-		return (-1);
-		}*/
+	return (-1);*/
+}
 
 static int	go_home(t_list **g_env, t_list **l_env)
 {
@@ -53,13 +61,13 @@ static int	go_home(t_list **g_env, t_list **l_env)
 int			bi_cd(t_av *av, t_list **g_env, t_list **l_env)
 {
 	if (av->argc > 2)
-		print_error(av, 0);
+		return (print_error(av, 0));
 	else if (av->argc > 1)
-		print_error(av, 1);
+		return (print_error(av, 1));
 	else if (av->argc == 1 && access(*av->arg, F_OK) == -1)
-		print_error(av, 2);
+		return (print_error(av, 2));
 	else if (av->argc == 1 && access(*av->arg, X_OK) == -1)
-		print_error(av, 3);
+		return (print_error(av, 3));
 	else if (*av->arg == NULL || ft_strcmp(*av->arg, "~") == 0)
 		return (go_home(g_env, l_env));
 	else if (*av->arg != NULL)

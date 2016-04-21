@@ -6,7 +6,7 @@
 /*   By: jguthert <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/04/19 19:08:29 by jguthert          #+#    #+#             */
-/*   Updated: 2016/04/20 16:33:03 by jguthert         ###   ########.fr       */
+/*   Updated: 2016/04/21 12:04:35 by jguthert         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,11 +21,12 @@ static t_error const	g_print[6] = {
 	{1, ": Variable name must begin with a letter.", 0},
 };
 
-void		print_error(t_av *av, int error)
+int		print_error(t_av *av, int error)
 {
 	if (g_print[error].cmd == 1)
 		ft_putstr(av->cmd);
 	ft_putstr(g_print[error].str);
 	if (g_print[error].arg == 1)
 		ft_putstr(av->arg[0]);
+	return (1);
 }

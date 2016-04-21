@@ -6,44 +6,13 @@
 /*   By: jguthert <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/04/13 15:36:17 by jguthert          #+#    #+#             */
-/*   Updated: 2016/04/20 16:38:56 by jguthert         ###   ########.fr       */
+/*   Updated: 2016/04/21 13:26:27 by jguthert         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
-
-static void show_list(t_list *av)
-{
-	int		i;
-	t_av	*avs;
-
-    if (av == NULL)
-        ft_putendl("list NULL");
-    while (av != NULL)
-    {
-		i = 0;
-		avs = (t_av *)av->content;
-		ft_putchar('[');
-        ft_putstr(avs->cmd);
-        ft_putchar(']');
-        ft_putstr("    ");
-        if (avs->arg != NULL)
-        {
-            while (avs->arg[i] != NULL)
-            {
-                ft_putchar('[');
-                ft_putstr(avs->arg[i]);
-                if (avs->arg[++i] != NULL)
-                    ft_putstr("]  ");
-                else
-                    ft_putendl("]");
-            }
-        }
-        else
-            ft_putendl("[]");
-        av = av->next;
-    }
-}
+#include <stdlib.h>
+#include <time.h>
 
 int     	main(void)
 {
@@ -53,12 +22,12 @@ int     	main(void)
 
 	if (get_env(&g_env, &l_env) == 1)
 		return (1);
+	srand(time(NULL));
 	while (1)
 	{
-		ft_putstr("$>");
+		print_prompt(rand(), g_env, l_env);
 		if (read_i(&av) == 1)
 			continue ;
-//		show_list(av);
 		if (shell(av, &g_env, &l_env) == 1)
 			return (1);
 		ft_lstdel(&av, free_av);

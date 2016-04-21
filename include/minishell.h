@@ -6,7 +6,7 @@
 /*   By: jguthert <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/02/08 17:56:10 by jguthert          #+#    #+#             */
-/*   Updated: 2016/04/20 16:29:32 by jguthert         ###   ########.fr       */
+/*   Updated: 2016/04/21 13:26:46 by jguthert         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,11 +61,12 @@ int				get_env(t_list **g_env, t_list **l_env);
 
 /*
 **Name: Shell
-**File: shell.c
+**File: shell.c print_prompt.c
 **Desc: Do shell functions
 */
 
 int				shell(t_list *av, t_list **g_env, t_list **l_env);
+void			print_prompt(int rand, t_list *g_env, t_list *l_env);
 
 /*
 **Name: builtin
@@ -95,6 +96,6 @@ void			free_env(void *content, size_t size);
 **Desc: print error from builtins
 */
 
-void			print_error(t_av *av, int error);
+int				print_error(t_av *av, int error);
 
 #endif

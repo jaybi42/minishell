@@ -6,7 +6,7 @@
 /*   By: jguthert <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/04/20 13:29:49 by jguthert          #+#    #+#             */
-/*   Updated: 2016/04/21 11:26:58 by jguthert         ###   ########.fr       */
+/*   Updated: 2016/04/21 12:08:42 by jguthert         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,7 @@ int		bi_unsetenv(t_av *av, t_list **g_env, t_list **l_env)
 
 	(void)l_env;
 	if (g_env == NULL || *av->arg == NULL)
-		return (0);
+		return (1);
 	link = *g_env;
 	while (link != NULL)
 	{
@@ -46,6 +46,5 @@ int		bi_unsetenv(t_av *av, t_list **g_env, t_list **l_env)
 		}
 		link = link->next;
 	}
-	bi_env(av, g_env, l_env);
-	return (0);
+	return (-1);
 }
