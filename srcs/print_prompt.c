@@ -6,11 +6,24 @@
 /*   By: jguthert <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/04/21 11:39:33 by jguthert          #+#    #+#             */
-/*   Updated: 2016/04/21 14:02:05 by jguthert         ###   ########.fr       */
+/*   Updated: 2016/04/21 17:16:31 by jguthert         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
+
+static void		get_color(int rand)
+{
+	int const	color[] = {30, 31, 32, 33, 34, 35, 36, 37};
+	int const	style[] = {0, 1, 4};
+
+	ft_putstr("\033[");
+	ft_putnbr(style[rand % 3]);
+	ft_putstr(";");
+	ft_putnbr(color[(rand % 14) / 2]);
+	ft_putstr("m");
+	printf("ma string etait: 033[%i;%im avec un rand [%i]\n", style[rand % 3], color[(rand % 14) / 2], rand);
+}
 
 static	int		local_prompt(t_list *l_env)
 {
@@ -43,22 +56,7 @@ static	int		global_prompt(t_list *g_env)
 
 void			print_prompt(int rand, t_list *g_env, t_list *l_env)
 {
-	int const	color[14] = {30, 31, 32, 33, 34, 35, 36, 37,
-						   40, 41, 42, 43, 44, 45, 46, 47};
-	int const	style[4] = {0, 1, 4, 7};
-	char const	cavas = {"\033[1;33m"};
-	char		*str;
-
-	str = ft_strnew(8);
-	while (*str !=)
-	{
-		ft_itoa(style[rand % 4]);
-		ft_itoa(color[rand % 14]);
-	}
-	ftv_pushback(&acc, );
-	ftv_pushback(&acc, );
-	ft_putstr(acc->data);
-	ft_
+	get_color(rand);
 	if (global_prompt(g_env) == 0)
 		;
 	else if (local_prompt(l_env) == 0)
