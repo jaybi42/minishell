@@ -6,7 +6,7 @@
 /*   By: jguthert <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/04/16 17:03:36 by jguthert          #+#    #+#             */
-/*   Updated: 2016/04/20 16:43:38 by jguthert         ###   ########.fr       */
+/*   Updated: 2016/04/22 16:27:23 by jguthert         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,6 +31,5 @@ int			builtin(t_av *av, t_list **g_env, t_list **l_env)
 			return (g_builtin_list[i].value(av , g_env, l_env));
 		i++;
 	}
-	ft_putendl("WTF no builtin");
 	return (0);
 }

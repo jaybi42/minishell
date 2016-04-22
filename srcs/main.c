@@ -6,7 +6,7 @@
 /*   By: jguthert <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/04/13 15:36:17 by jguthert          #+#    #+#             */
-/*   Updated: 2016/04/21 17:00:07 by jguthert         ###   ########.fr       */
+/*   Updated: 2016/04/22 16:17:55 by jguthert         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,8 @@ int				main(void)
 	int			random_i;
 
 	srand(time(NULL));
-	random_i = rand();
+	random_i = (int)rand();
+	ft_putendl(ft_itoa(random_i));
 	if (get_env(&g_env, &l_env) == 1)
 		return (1);
 	while (1)

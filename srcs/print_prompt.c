@@ -6,7 +6,7 @@
 /*   By: jguthert <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/04/21 11:39:33 by jguthert          #+#    #+#             */
-/*   Updated: 2016/04/21 17:16:31 by jguthert         ###   ########.fr       */
+/*   Updated: 2016/04/22 16:18:29 by jguthert         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,15 +14,14 @@
 
 static void		get_color(int rand)
 {
-	int const	color[] = {30, 31, 32, 33, 34, 35, 36, 37};
+	int const	color[] = {31, 32, 33, 34, 35, 36, 37};
 	int const	style[] = {0, 1, 4};
 
 	ft_putstr("\033[");
 	ft_putnbr(style[rand % 3]);
 	ft_putstr(";");
-	ft_putnbr(color[(rand % 14) / 2]);
+	ft_putnbr(color[rand % 7]);
 	ft_putstr("m");
-	printf("ma string etait: 033[%i;%im avec un rand [%i]\n", style[rand % 3], color[(rand % 14) / 2], rand);
 }
 
 static	int		local_prompt(t_list *l_env)
