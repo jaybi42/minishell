@@ -6,7 +6,7 @@
 /*   By: jguthert <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/04/20 13:29:49 by jguthert          #+#    #+#             */
-/*   Updated: 2016/04/21 12:08:42 by jguthert         ###   ########.fr       */
+/*   Updated: 2016/04/24 14:17:04 by jguthert         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,17 +29,17 @@ static void unset_link(t_list **g_env, t_list *link)
 	ft_lstdelone(&link, free_env);
 }
 
-int		bi_unsetenv(t_av *av, t_list **g_env, t_list **l_env)
+int		bi_unsetenv(t_av av, t_list **g_env, t_list **l_env)
 {
 	t_list	*link;
 
 	(void)l_env;
-	if (g_env == NULL || *av->arg == NULL)
+	if (g_env == NULL || *av.arg == NULL)
 		return (1);
 	link = *g_env;
 	while (link != NULL)
 	{
-		if (ft_strstr(((t_env *)link->content)->str, *av->arg) != NULL)
+		if (ft_strstr(((t_env *)link->content)->str, *av.arg) != NULL)
 		{
 			unset_link(g_env, link);
 			return (0);

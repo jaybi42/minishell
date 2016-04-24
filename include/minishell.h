@@ -6,7 +6,7 @@
 /*   By: jguthert <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/02/08 17:56:10 by jguthert          #+#    #+#             */
-/*   Updated: 2016/04/22 18:27:54 by jguthert         ###   ########.fr       */
+/*   Updated: 2016/04/24 15:09:20 by jguthert         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,8 @@
 # include <stdio.h> //
 
 # include "libft.h"
+
+# define AV_INIT(CMD,AV1,AV2,AC) ((t_av){CMD, (char *[]){AV1, AV2, NULL}, AC})
 
 typedef struct	s_env
 {
@@ -56,7 +58,7 @@ typedef struct	s_builtin
 **Desc: Parse read and env
 */
 
-int				read_i(t_list **av);
+int				read_i(t_list **av_list);
 int				get_env(t_list **g_env, t_list **l_env);
 
 /*
@@ -65,7 +67,7 @@ int				get_env(t_list **g_env, t_list **l_env);
 **Desc: Do shell functions
 */
 
-int				shell(t_list *av, t_list **g_env, t_list **l_env);
+int				shell(t_list *av_list, t_list **g_env, t_list **l_env);
 void			print_prompt(int rand, t_list *g_env, t_list *l_env);
 
 /*
@@ -75,11 +77,11 @@ void			print_prompt(int rand, t_list *g_env, t_list *l_env);
 */
 
 int				builtin(t_av *av, t_list **g_env, t_list **l_env);
-int				bi_cd(t_av *av, t_list **g_env, t_list **l_env);
-int				bi_env(t_av *av, t_list **g_env, t_list **l_env);
-int				bi_unsetenv(t_av *av, t_list **g_env, t_list **l_env);
-int				bi_setenv(t_av *av, t_list **g_env, t_list **l_env);
-int				bi_exit(t_av *av, t_list **g_env, t_list **l_env);
+int				bi_cd(t_av av, t_list **g_env, t_list **l_env);
+int				bi_env(t_av av, t_list **g_env, t_list **l_env);
+int				bi_unsetenv(t_av av, t_list **g_env, t_list **l_env);
+int				bi_setenv(t_av av, t_list **g_env, t_list **l_env);
+int				bi_exit(t_av av, t_list **g_env, t_list **l_env);
 
 /*
 **Name: Free list
@@ -96,6 +98,6 @@ void			free_env(void *content, size_t size);
 **Desc: print error from builtins
 */
 
-int				print_error(t_av *av, int error);
+int				print_error(t_av av, int error);
 
 #endif

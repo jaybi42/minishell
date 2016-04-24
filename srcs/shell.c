@@ -6,7 +6,7 @@
 /*   By: jguthert <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/04/16 17:01:52 by jguthert          #+#    #+#             */
-/*   Updated: 2016/04/22 18:42:26 by jguthert         ###   ########.fr       */
+/*   Updated: 2016/04/24 13:57:34 by jguthert         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,18 +27,20 @@ static char	*get_path(t_list *env)
 
 static char	**convert_env(t_list *env)
 {
+	t_list	*begin;
 	char	**tab;
 	int		i;
 	bool	moche;
 
 	moche = 0;
 	i = 0;
-	while (env != NULL)
+	begin = env;
+	while (begin != NULL)
 	{
-		if (ft_strcmp(((t_env *)env->content)->name, "PATH") == 0)
+		if (ft_strcmp(((t_env *)begin->content)->name, "PATH") == 0)
 			moche = 1;
 		i++;
-		env = env->next;
+		begin = begin->next;
 	}
 	if (moche == 0)
 		return (NULL);
@@ -77,12 +79,14 @@ static void do_exec(t_av *av, t_list *g_env, t_list *l_env)
 	str = get_path(g_env);
 	if (str == NULL)
 		str = get_path(l_env);
+	ft_putendl(str);
 	if (execve(av->cmd, av->arg, env) == -1)
 	{
 		path = ft_strsplit(str, ':');
 		exec_path(av->arg, path, env);
+		ft_tabdel(path);
 	}
-//	ft_tabdel(env);
+	ft_tabdel(env);
 }
 
 int			shell(t_list *av_list, t_list **g_env, t_list **l_env)
@@ -93,10 +97,11 @@ int			shell(t_list *av_list, t_list **g_env, t_list **l_env)
 	{
 		if (builtin(((t_av *)av_list->content), g_env, l_env) == 0)
 			return (0);
-		ret = fork();
+/*		ret = fork();
+		ft_putnbr(ret);
 		if (ret == -1)
-			return (0);
-		do_exec(((t_av *)av_list->content), *g_env, *l_env);
+			return (1);
+			do_exec(((t_av *)av_list->content), *g_env, *l_env);*/
 		av_list = av_list->next;
 	}
 	return (0);
