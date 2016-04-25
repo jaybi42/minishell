@@ -6,7 +6,7 @@
 /*   By: jguthert <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/02/08 17:56:10 by jguthert          #+#    #+#             */
-/*   Updated: 2016/04/24 17:00:27 by jguthert         ###   ########.fr       */
+/*   Updated: 2016/04/25 13:50:17 by jguthert         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,7 +68,7 @@ int				get_env(t_list **g_env, t_list **l_env);
 */
 
 int				shell(t_list *av_list, t_list **g_env, t_list **l_env);
-void			do_exec(t_av av, t_list *g_env, t_list *l_env);
+int				do_exec(t_av av, t_list *g_env, t_list *l_env);
 void			print_prompt(int rand, t_list *g_env, t_list *l_env);
 
 /*

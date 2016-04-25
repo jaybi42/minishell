@@ -6,7 +6,7 @@
 /*   By: jguthert <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/04/16 17:03:36 by jguthert          #+#    #+#             */
-/*   Updated: 2016/04/24 14:14:18 by jguthert         ###   ########.fr       */
+/*   Updated: 2016/04/25 13:14:38 by jguthert         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,6 @@ int			builtin(t_av *av, t_list **g_env, t_list **l_env)
 	{
 		if (ft_strcmp(g_builtin_list[i].key, av->cmd) == 0)
 		{
-			ft_putendl("Builtin compatibility found.");
 			ret = g_builtin_list[i].value(*av , g_env, l_env);
 			return (ret == -1 ? -1 : 0);
 		}

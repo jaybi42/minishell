@@ -6,13 +6,13 @@
 /*   By: jguthert <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/04/16 19:53:06 by jguthert          #+#    #+#             */
-/*   Updated: 2016/04/24 18:56:54 by jguthert         ###   ########.fr       */
+/*   Updated: 2016/04/25 13:27:55 by jguthert         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-static void	print_env(t_list *env)
+static void		print_env(t_list *env)
 {
 	while (env != NULL)
 	{
@@ -21,33 +21,37 @@ static void	print_env(t_list *env)
 	}
 }
 
-static void set_newarg(t_av av, t_list **n_env, t_list **l_env)
+static void		set_newarg(t_av av, t_list **n_env, t_list **l_env)
 {
-	char	*my_arg;
-	char	*my_cmd;
-	int		i;
+	char		*my_arg;
+	char		*my_cmd;
+	int			i;
 
 	i = 0;
-	while (av.arg[1][i] != '=' && av.arg[1][i] != '\0')
+	my_arg = *av.arg;
+	while (my_arg[i] != '\0' && my_arg[i] != '=')
+	{
+		ft_putchar(my_arg[i]);
 		i++;
+	}
 	my_cmd = ft_strsub(av.arg[1], 0, i);
 	my_arg = ft_strchr(av.arg[1], '=');
 	bi_setenv(AV_INIT(my_cmd, my_arg, NULL, 1), n_env, l_env);
 	ft_strdel(&my_cmd);
 }
 
-static void	get_new_env(t_av av, t_list **g_env, t_list **l_env)
+static t_list	*get_new_env(t_av av, t_list **g_env, t_list **l_env)
 {
 	t_list	*new_list;
 
 	new_list = *g_env;
 	set_newarg(av, &new_list, l_env);
-	return (new_list)
+	return (new_list);
 }
 
-int			bi_env(t_av av, t_list **g_env, t_list **l_env)
+int				bi_env(t_av av, t_list **g_env, t_list **l_env)
 {
-	t_list	*n_env;
+	t_list		*n_env;
 
 	n_env = NULL;
 	if (av.argc != 0)
