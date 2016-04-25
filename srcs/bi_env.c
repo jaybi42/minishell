@@ -6,7 +6,7 @@
 /*   By: jguthert <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/04/16 19:53:06 by jguthert          #+#    #+#             */
-/*   Updated: 2016/04/25 13:27:55 by jguthert         ###   ########.fr       */
+/*   Updated: 2016/04/25 17:54:01 by jguthert         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,16 +28,13 @@ static void		set_newarg(t_av av, t_list **n_env, t_list **l_env)
 	int			i;
 
 	i = 0;
-	my_arg = *av.arg;
-	while (my_arg[i] != '\0' && my_arg[i] != '=')
-	{
-		ft_putchar(my_arg[i]);
+	while (av.arg[0][i] != '\0' && av.arg[0][i] != '=')
 		i++;
-	}
-	my_cmd = ft_strsub(av.arg[1], 0, i);
-	my_arg = ft_strchr(av.arg[1], '=');
-	bi_setenv(AV_INIT(my_cmd, my_arg, NULL, 1), n_env, l_env);
-	ft_strdel(&my_cmd);
+	my_cmd = ft_strsub(*av.arg, 0, i);
+	my_arg = ft_strchr(*av.arg, '=') + 1;
+	bi_setenv(AV_INIT("setenv", my_cmd, my_arg, 2), n_env, l_env);
+	if (my_cmd != NULL)
+		ft_strdel(&my_cmd);
 }
 
 static t_list	*get_new_env(t_av av, t_list **g_env, t_list **l_env)

@@ -6,13 +6,13 @@
 /*   By: jguthert <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/04/19 19:08:29 by jguthert          #+#    #+#             */
-/*   Updated: 2016/04/25 13:51:55 by jguthert         ###   ########.fr       */
+/*   Updated: 2016/04/25 17:57:59 by jguthert         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-static t_error const	g_print[7] = {
+static t_error const	g_print[8] = {
 	{1, ": too many arguments.", 0},
 	{1, ": string not in pwd: ", 1},
 	{1, ": no such file or directory: ", 1},
@@ -20,6 +20,7 @@ static t_error const	g_print[7] = {
 	{1, ": Variable name must contain alphanumeric characters.", 0},
 	{1, ": Variable name must begin with a letter.", 0},
 	{0, "Fork is fucked.", 0},
+	{1, ": command not found: ", 1},
 };
 
 int		print_error(t_av av, int error)
