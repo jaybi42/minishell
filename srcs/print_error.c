@@ -6,7 +6,7 @@
 /*   By: jguthert <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/04/19 19:08:29 by jguthert          #+#    #+#             */
-/*   Updated: 2016/04/25 17:57:59 by jguthert         ###   ########.fr       */
+/*   Updated: 2016/04/26 13:36:33 by jguthert         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,5 +30,6 @@ int		print_error(t_av av, int error)
 	ft_putstr(g_print[error].str);
 	if (g_print[error].arg == 1)
 		ft_putstr(av.arg[0]);
+	ft_putchar('\n');
 	return (1);
 }
