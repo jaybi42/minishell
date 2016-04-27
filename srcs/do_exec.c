@@ -6,7 +6,7 @@
 /*   By: jguthert <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/04/24 16:57:26 by jguthert          #+#    #+#             */
-/*   Updated: 2016/04/26 14:13:45 by jguthert         ###   ########.fr       */
+/*   Updated: 2016/04/27 16:49:16 by jguthert         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,9 +73,25 @@ static char	**get_allpath(char *cmd, char *path)
 {
 	char	**temp;
 	char	**allpath;
+	int		i;
 
-	temp = ft_strsplit(str, ':');
-
+	i = -1;
+	temp = ft_strsplit(path, ':');
+	allpath = (char **)malloc(sizeof(temp));
+	while (temp[++i])
+		allpath[i] = ft_strjoin(temp[i], "/");
+	ft_tabdel(temp);
+	temp = (char **)malloc(sizeof(allpath));
+	i = -1;
+	while (allpath[++i])
+	{
+		ft_putendl(allpath[i]);
+		ft_putnbr(ft_strlen(allpath[i]));
+		ft_putchar('\n');
+		temp[i] = ft_strjoin(allpath[i], cmd);
+	}
+	ft_tabdel(allpath);
+	return (temp);
 }
 
 int			do_exec(t_av av, t_list *g_env, t_list *l_env)
