@@ -6,7 +6,7 @@
 /*   By: jguthert <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/04/24 16:57:26 by jguthert          #+#    #+#             */
-/*   Updated: 2016/04/29 17:28:53 by jguthert         ###   ########.fr       */
+/*   Updated: 2016/04/29 17:32:17 by jguthert         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,24 +14,6 @@
 #include <unistd.h>
 #include <stdlib.h>
 #include <sys/wait.h>
-
-static void	ft_print_tab(char **tab, char *name)
-{
-	int i = 0;
-
-	ft_putstr("----- ");
-	ft_putstr(name);
-	ft_putendl(" -----");
-	while (tab[i] != NULL)
-	{
-		ft_putnbr(i);
-		ft_putstr(" : [");
-		ft_putstr(tab[i]);
-		ft_putstr("]\n");
-		i++;
-	}
-	ft_putendl("---------------");
-}
 
 static char	*get_path(t_list *env)
 {
