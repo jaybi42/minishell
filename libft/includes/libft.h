@@ -6,7 +6,7 @@
 /*   By: jguthert <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/12/13 14:10:31 by jguthert          #+#    #+#             */
-/*   Updated: 2016/04/24 13:32:51 by jguthert         ###   ########.fr       */
+/*   Updated: 2016/04/29 17:31:30 by jguthert         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,6 +58,7 @@ void				ft_putchar_fd(char c, int fd);
 void				ft_putstr_fd(char const *s, int fd);
 void				ft_putendl_fd(char const *s, int fd);
 void				ft_putnbr_fd(int n, int fd);
+void				ft_print_tab(char **tab, char *name);
 
 /*
 **	##=-  String  -=##
@@ -102,6 +103,7 @@ void				ft_tabdel(char **tab);
 */
 
 int					ft_nbrlen(uint64_t nbr);
+int					ft_tablen(char **tab);
 
 /*
 **	##=-  Adaptator  -=##

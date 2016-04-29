@@ -6,11 +6,14 @@
 /*   By: jguthert <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/04/16 19:53:06 by jguthert          #+#    #+#             */
-/*   Updated: 2016/04/25 17:54:01 by jguthert         ###   ########.fr       */
+/*   Updated: 2016/04/29 16:07:35 by jguthert         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
+#include <unistd.h>
+#include <stdlib.h>
+#include <sys/wait.h>
 
 static void		print_env(t_list *env)
 {
@@ -60,7 +63,7 @@ int				bi_env(t_av av, t_list **g_env, t_list **l_env)
 		print_env(n_env);
 		if (n_env != NULL)
 			ft_lstdel(&n_env, free_env);
-	}
+			}
 	else
 		print_env(*g_env);
 	return (0);

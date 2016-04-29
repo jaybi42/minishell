@@ -6,7 +6,7 @@
 #    By: jguthert <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2015/12/12 14:57:16 by jguthert          #+#    #+#              #
-#    Updated: 2016/04/24 13:33:25 by jguthert         ###   ########.fr        #
+#    Updated: 2016/04/29 17:30:58 by jguthert         ###   ########.fr        #
 #                                                                              #
 #******************************************************************************#
 
@@ -47,7 +47,7 @@ SRCFILES = 	ft_isprint.c ft_memset.c ft_bzero.c			\
 			ft_strchr.c ft_strrchr.c ft_strstr.c 		\
 			ft_strnstr.c ft_strcmp.c ft_strncmp.c 		\
 			ft_atoi.c ft_isalpha.c ft_isdigit.c 		\
-			ft_isalnum.c ft_isascii.c			 		\
+			ft_isalnum.c ft_isascii.c ft_tablen.c 		\
 			ft_toupper.c ft_tolower.c ft_memalloc.c 	\
 			ft_memdel.c ft_strnew.c ft_strdel.c 		\
 			ft_strclr.c ft_striter.c ft_striteri.c 		\
@@ -65,7 +65,7 @@ SRCFILES = 	ft_isprint.c ft_memset.c ft_bzero.c			\
 			ftv_del.c ft_error.c ft_nbrlen.c			\
 			ft_isblank.c ft_isspace.c ft_tabdel.c		\
 			ft_strsplit_space.c ft_strsplit_blank.c		\
-			ft_strisalnum.c								\
+			ft_strisalnum.c	ft_print_tab.c				\
 
 ##=- Process -=##
 

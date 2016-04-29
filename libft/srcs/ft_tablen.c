@@ -1,24 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_tabdel.c                                        :+:      :+:    :+:   */
+/*   ft_tablen.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jguthert <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2016/04/24 13:28:49 by jguthert          #+#    #+#             */
-/*   Updated: 2016/04/29 17:02:59 by jguthert         ###   ########.fr       */
+/*   Created: 2016/04/29 16:41:46 by jguthert          #+#    #+#             */
+/*   Updated: 2016/04/29 16:42:46 by jguthert         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-void		ft_tabdel(char **tab)
+int		ft_tablen(char **tab)
 {
-	int		i;
+	int	i;
 
 	i = 0;
-	while (tab[i] != NULL)
-		ft_strdel(&tab[i++]);
-	if (tab != NULL)
-		ft_strdel(tab);
+	while (tab[i] != 0)
+		i++;
+	return (i);
 }
