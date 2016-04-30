@@ -6,7 +6,7 @@
 /*   By: jguthert <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/04/16 19:53:06 by jguthert          #+#    #+#             */
-/*   Updated: 2016/04/29 16:07:35 by jguthert         ###   ########.fr       */
+/*   Updated: 2016/04/30 12:39:34 by jguthert         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ static void		print_env(t_list *env)
 	}
 }
 
-static void		set_newarg(t_av av, t_list **n_env, t_list **l_env)
+static int		set_newarg(t_av av, t_list **n_env, t_list **l_env)
 {
 	char		*my_arg;
 	char		*my_cmd;
@@ -33,11 +33,14 @@ static void		set_newarg(t_av av, t_list **n_env, t_list **l_env)
 	i = 0;
 	while (av.arg[0][i] != '\0' && av.arg[0][i] != '=')
 		i++;
+	if (av.arg[0][i] == '=')
+		return (1);
 	my_cmd = ft_strsub(*av.arg, 0, i);
 	my_arg = ft_strchr(*av.arg, '=') + 1;
 	bi_setenv(AV_INIT("setenv", my_cmd, my_arg, 2), n_env, l_env);
 	if (my_cmd != NULL)
 		ft_strdel(&my_cmd);
+	return (0);
 }
 
 static t_list	*get_new_env(t_av av, t_list **g_env, t_list **l_env)
@@ -51,20 +54,28 @@ static t_list	*get_new_env(t_av av, t_list **g_env, t_list **l_env)
 
 int				bi_env(t_av av, t_list **g_env, t_list **l_env)
 {
-	t_list		*n_env;
+	int			ret;
 
-	n_env = NULL;
-	if (av.argc != 0)
-		n_env = get_new_env(av, g_env, l_env);
-	if (av.argc > 1)
-		do_exec(av, n_env, *l_env);
-	else if (av.argc == 1)
-	{
-		print_env(n_env);
-		if (n_env != NULL)
-			ft_lstdel(&n_env, free_env);
-			}
-	else
-		print_env(*g_env);
+    ret = fork();
+    if (ret > 0)
+		ret = wait(NULL);
+    else if (ret == -1)
+        return (print_error(av, 6));
+    else
+    {
+//		if (av.argc != 0)
+//			n_env = get_new_env(av, g_env, l_env);
+
+		if (av.argc > 1)
+			do_exec(av, n_env, *l_env);
+		else if (av.argc == 1)
+		{
+			print_env(n_env);
+			if (n_env != NULL)
+				ft_lstdel(&n_env, free_env);
+		}
+		else
+			print_env(*g_env);
+	}
 	return (0);
 }

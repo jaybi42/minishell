@@ -6,7 +6,7 @@
 /*   By: jguthert <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/12/13 14:10:31 by jguthert          #+#    #+#             */
-/*   Updated: 2016/04/29 17:31:30 by jguthert         ###   ########.fr       */
+/*   Updated: 2016/04/30 12:28:50 by jguthert         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -104,6 +104,7 @@ void				ft_tabdel(char **tab);
 
 int					ft_nbrlen(uint64_t nbr);
 int					ft_tablen(char **tab);
+int					ft_listlen(t_list *list);
 
 /*
 **	##=-  Adaptator  -=##

@@ -6,16 +6,17 @@
 /*   By: jguthert <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/04/29 17:30:13 by jguthert          #+#    #+#             */
-/*   Updated: 2016/04/29 17:30:35 by jguthert         ###   ########.fr       */
+/*   Updated: 2016/04/30 12:18:52 by jguthert         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-static void ft_print_tab(char **tab, char *name)
+void	ft_print_tab(char **tab, char *name)
 {
-	int i = 0;
+	int	i;
 
+	i = 0;
 	ft_putstr("----- ");
 	ft_putstr(name);
 	ft_putendl(" -----");
