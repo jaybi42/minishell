@@ -6,7 +6,7 @@
 /*   By: jguthert <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/02/08 17:56:10 by jguthert          #+#    #+#             */
-/*   Updated: 2016/04/25 13:50:17 by jguthert         ###   ########.fr       */
+/*   Updated: 2016/04/30 18:32:59 by jguthert         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,6 +52,15 @@ typedef struct	s_builtin
 	t_bi_fptr	value;
 }				t_builtin;
 
+typedef int		(*t_opt_ptr)();
+
+typedef struct	s_env_opt
+{
+	char		*key;
+	t_opt_ptr	value;
+	int			nbr;
+}				t_env_opt;
+
 /*
 **Name: Parsing
 **File: read.c get_env.c
@@ -73,13 +82,15 @@ void			print_prompt(int rand, t_list *g_env, t_list *l_env);
 
 /*
 **Name: builtin
-**File: builtin.c bi_*.c
+**File: builtin.c bi_*.c env_*.c
 **Desc: Do the builtin if it exist
 */
 
 int				builtin(t_av *av, t_list **g_env, t_list **l_env);
 int				bi_cd(t_av av, t_list **g_env, t_list **l_env);
 int				bi_env(t_av av, t_list **g_env, t_list **l_env);
+void			env_u(char **arg, t_list **g_env, t_list **l_env);
+int				env_arg(char **arg, t_list **g_env, t_list **l_env);
 int				bi_unsetenv(t_av av, t_list **g_env, t_list **l_env);
 int				bi_setenv(t_av av, t_list **g_env, t_list **l_env);
 int				bi_exit(t_av av, t_list **g_env, t_list **l_env);
