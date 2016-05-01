@@ -6,7 +6,7 @@
 /*   By: jguthert <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/04/16 19:53:06 by jguthert          #+#    #+#             */
-/*   Updated: 2016/04/30 18:32:39 by jguthert         ###   ########.fr       */
+/*   Updated: 2016/05/01 14:24:22 by jguthert         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,11 +14,6 @@
 #include <unistd.h>
 #include <stdlib.h>
 #include <sys/wait.h>
-
-static t_env_opt const	g_env_option[2] = {
-	{"-i", env_i, 1},
-	{"-u", env_u, 2},
-};
 
 static void		print_env(t_list *env)
 {
@@ -29,75 +24,63 @@ static void		print_env(t_list *env)
 	}
 }
 
-static void		remake_av(t_av *av, int nbr)
+static int		set_new_arg(char *arg, t_list **g_env, t_list **l_env)
 {
-	int		i;
+	char		*my_arg;
+	char		*my_cmd;
+	int			i;
 
 	i = 0;
-	while (i < nbr)
-	{
-		if (av->arg[i] != NULL)
-			ft_strdel(av->arg[i]);
+	while (arg[i] != '\0' && arg[i] != '=')
 		i++;
-	}
-	i = -1;
-	while (++i < av->argc - nbr)
-		av->arg[i] = av->arg[i + nbr];
-	while (i < av->argc)
-		av->arg[i++] = NULL;
-	av->argc -= nbr;
-}
-
-static void		env_i(char **arg, t_list **g_env, t_list **l_env)
-{
-	(void)arg;
-	ft_listdel(g_env, free_env);
+	if (arg[i] != '=')
+		return (1);
+	my_cmd = ft_strsub(arg, 0, i);
+	my_arg = ft_strchr(arg, '=') + 1;
+	bi_setenv(AV_INIT("setenv", my_cmd, my_arg, 2), g_env, l_env);
+	if (my_cmd != NULL)
+		ft_strdel(&my_cmd);
 	return (0);
 }
 
 static int		parse_env(t_av av, t_list **g_env, t_list **l_env)
 {
-	int		i;
-	int		total;
+	int			i;
 
-	total = 0;
 	i = 0;
-	while (i < 2 && total != av->argc)
+	while (i < av.argc)
 	{
-		if (ft_strncmp(g_env_option[i].key, av.arg[total], 2) == 0)
-		{
-			g_env_option[i].value(av->arg + total, g_env, l_env);
-			total += g_env_option[i].nbr;
-			i = 0;
-		}
+		if (ft_strncmp("-i", av.arg[i], 2) == 0)
+			ft_lstdel(g_env, free_env);
+		else if (ft_strncmp("-u", av.arg[i], 2) == 0)
+			bi_unsetenv(AV_INIT(NULL, av.arg[i], NULL, 1), g_env, l_env);
 		else
-			i++;
+			break ;
 	}
-	while (env_arg(av->arg + total, g_env, l_env) == 1)
-		total++;
-//	if (av->argc - total == 1)
-//		do_exec(av, *g_env, *l_env);
-//	else
-	print_env(g_env);
-	return (0);
+	while (set_new_arg(*av.arg + i, g_env, l_env) == 1)
+		i++;
+	return (i);
 }
 
 int				bi_env(t_av av, t_list **g_env, t_list **l_env)
 {
 	int			ret;
 
-    ret = fork();
-    if (ret == 0)
-    {
-		if (av.argc == 0)
-			print_env(*g_env);
+	ret = fork();
+	if (ret == 0)
+	{
+		ret = parse_env(av, g_env, l_env);
+		av.arg += ret;
+		av.argc -= ret;
+		if (av.argc >= 1)
+			do_exec(av, *g_env, *l_env);
 		else
-			parse_env(av, g_env, l_env);
+			print_env(*g_env);
 		bi_exit(AV_INIT(NULL, NULL, NULL, 0), NULL, NULL);
 	}
-    else if (ret == -1)
-        return (print_error(av, 6));
-    else
+	else if (ret == -1)
+		return (print_error(av, 6));
+	else
 		ret = wait(NULL);
 	return (0);
 }

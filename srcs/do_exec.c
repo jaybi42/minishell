@@ -6,14 +6,13 @@
 /*   By: jguthert <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/04/24 16:57:26 by jguthert          #+#    #+#             */
-/*   Updated: 2016/04/30 12:35:25 by jguthert         ###   ########.fr       */
+/*   Updated: 2016/05/01 14:01:30 by jguthert         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 #include <unistd.h>
 #include <stdlib.h>
-#include <sys/wait.h>
 
 static char	*get_path(t_list *g_env, t_list *l_env)
 {
@@ -94,24 +93,15 @@ int			do_exec(t_av av, t_list *g_env, t_list *l_env)
 	char	**env;
 	char	**path;
 	char	*str;
-	pid_t	ret;
 
-	ret = fork();
-	if (ret > 0)
-		ret = wait(NULL);
-	else if (ret == -1)
-		return (print_error(av, 6));
-	else
+	env = convert_env(g_env, l_env);
+	str = get_path(g_env, l_env);
+	if (execve(av.cmd, av.arg, env) == -1)
 	{
-		env = convert_env(g_env, l_env);
-		str = get_path(g_env, l_env);
-		if (execve(av.cmd, av.arg, env) == -1)
-		{
-			path = get_allpath(av.cmd, str);
-			exec_path(av.arg, path, env);
-			ft_tabdel(path);
-		}
-		ft_tabdel(env);
+		path = get_allpath(av.cmd, str);
+		exec_path(av.arg, path, env);
+		ft_tabdel(path);
 	}
-	return (0);
+	ft_tabdel(env);
+	return (bi_exit(AV_INIT(NULL, NULL, NULL, 1), NULL, NULL));
 }
