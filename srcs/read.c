@@ -6,7 +6,7 @@
 /*   By: jguthert <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/04/16 16:07:22 by jguthert          #+#    #+#             */
-/*   Updated: 2016/04/25 17:40:11 by jguthert         ###   ########.fr       */
+/*   Updated: 2016/05/01 16:06:29 by jguthert         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ static void	fill_av(t_av *av, char *str)
 	av->cmd = ft_strsub(str, j, k - j);
 	av->arg = ft_strsplit_blank(str + k);
 	k = -1;
-	while (av->arg[++k] != NULL)
+	while (av->arg != NULL && av->arg[++k] != NULL)
 		av->argc++;
 }
 

@@ -6,7 +6,7 @@
 /*   By: jguthert <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/11/30 21:37:53 by jguthert          #+#    #+#             */
-/*   Updated: 2016/04/17 15:20:27 by jguthert         ###   ########.fr       */
+/*   Updated: 2016/05/01 16:02:04 by jguthert         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,6 +36,8 @@ char				**ft_strsplit_blank(char const *s)
 	char	**result;
 
 	words = count_words((char *)s);
+	if (words == 0)
+		return (NULL);
 	if (!(result = (char **)malloc(sizeof(char *) * (words + 1))))
 		return (NULL);
 	start = (char *)s;

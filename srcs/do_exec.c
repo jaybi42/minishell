@@ -6,7 +6,7 @@
 /*   By: jguthert <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/04/24 16:57:26 by jguthert          #+#    #+#             */
-/*   Updated: 2016/05/01 14:01:30 by jguthert         ###   ########.fr       */
+/*   Updated: 2016/05/01 16:12:30 by jguthert         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,19 +53,6 @@ static char **convert_env(t_list *g_env, t_list *l_env)
 	return (tab);
 }
 
-static void exec_path(char **arg, char **path, char **env)
-{
-	int	i;
-
-	i = 0;
-	while (path[i] != NULL)
-	{
-		if (access(path[i], X_OK) != -1 && execve(path[i], arg, env) == 0)
-			return ;
-		i++;
-	}
-}
-
 static char	**get_allpath(char *cmd, char *path)
 {
 	char	**temp;
@@ -88,6 +75,19 @@ static char	**get_allpath(char *cmd, char *path)
 	return (temp);
 }
 
+static void exec_path(char **arg, char **path, char **env)
+{
+	int	i;
+
+	i = 0;
+	while (path[i] != NULL)
+	{
+		if (access(path[i], X_OK) != -1 && execve(path[i], arg, env) == 0)
+			return ;
+		i++;
+	}
+}
+
 int			do_exec(t_av av, t_list *g_env, t_list *l_env)
 {
 	char	**env;
@@ -96,6 +96,8 @@ int			do_exec(t_av av, t_list *g_env, t_list *l_env)
 
 	env = convert_env(g_env, l_env);
 	str = get_path(g_env, l_env);
+	if (av.arg == NULL)
+		av.arg = (char *[]){"", NULL};
 	if (execve(av.cmd, av.arg, env) == -1)
 	{
 		path = get_allpath(av.cmd, str);
