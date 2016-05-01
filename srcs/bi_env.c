@@ -6,7 +6,7 @@
 /*   By: jguthert <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/04/16 19:53:06 by jguthert          #+#    #+#             */
-/*   Updated: 2016/05/01 14:24:22 by jguthert         ###   ########.fr       */
+/*   Updated: 2016/05/01 15:32:39 by jguthert         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,17 +47,17 @@ static int		parse_env(t_av av, t_list **g_env, t_list **l_env)
 {
 	int			i;
 
-	i = 0;
-	while (i < av.argc)
+	i = -1;
+	while (++i < av.argc)
 	{
 		if (ft_strncmp("-i", av.arg[i], 2) == 0)
 			ft_lstdel(g_env, free_env);
 		else if (ft_strncmp("-u", av.arg[i], 2) == 0)
-			bi_unsetenv(AV_INIT(NULL, av.arg[i], NULL, 1), g_env, l_env);
+			bi_unsetenv(AV_INIT(NULL, av.arg[++i], NULL, 1), g_env, l_env);
 		else
 			break ;
 	}
-	while (set_new_arg(*av.arg + i, g_env, l_env) == 1)
+	while (i < av.argc && set_new_arg(*(av.arg + i), g_env, l_env) == 0)
 		i++;
 	return (i);
 }
@@ -65,15 +65,19 @@ static int		parse_env(t_av av, t_list **g_env, t_list **l_env)
 int				bi_env(t_av av, t_list **g_env, t_list **l_env)
 {
 	int			ret;
+	t_av		new_av;
 
 	ret = fork();
 	if (ret == 0)
 	{
 		ret = parse_env(av, g_env, l_env);
-		av.arg += ret;
-		av.argc -= ret;
-		if (av.argc >= 1)
-			do_exec(av, *g_env, *l_env);
+		new_av.argc = av.argc - ret;
+		if (new_av.argc >= 1)
+		{
+			new_av.cmd = av.arg[ret];
+			new_av.arg = av.arg + ret + 1;
+			do_exec(new_av, *g_env, *l_env);
+		}
 		else
 			print_env(*g_env);
 		bi_exit(AV_INIT(NULL, NULL, NULL, 0), NULL, NULL);
