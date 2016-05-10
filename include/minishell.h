@@ -6,7 +6,7 @@
 /*   By: jguthert <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/02/08 17:56:10 by jguthert          #+#    #+#             */
-/*   Updated: 2016/05/01 13:51:31 by jguthert         ###   ########.fr       */
+/*   Updated: 2016/05/10 16:22:25 by jguthert         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,7 +77,7 @@ void			print_prompt(int rand, t_list *g_env, t_list *l_env);
 **Desc: Do the builtin if it exist
 */
 
-int				builtin(t_av *av, t_list **g_env, t_list **l_env);
+int				builtin(t_av av, t_list **g_env, t_list **l_env);
 int				bi_cd(t_av av, t_list **g_env, t_list **l_env);
 int				bi_env(t_av av, t_list **g_env, t_list **l_env);
 int				bi_unsetenv(t_av av, t_list **g_env, t_list **l_env);

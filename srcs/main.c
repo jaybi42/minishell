@@ -6,7 +6,7 @@
 /*   By: jguthert <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/04/13 15:36:17 by jguthert          #+#    #+#             */
-/*   Updated: 2016/04/24 13:56:30 by jguthert         ###   ########.fr       */
+/*   Updated: 2016/05/10 15:33:29 by jguthert         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,16 +19,15 @@ int				main(void)
 	t_list		*l_env;
 	t_list		*g_env;
 	t_list		*av;
-	int			random_i;
+	uint64_t	nbr;
 
 	srand(time(NULL));
-	random_i = (int)rand();
-	ft_putendl(ft_itoa(random_i));
+	nbr = rand() % 2147483648;
 	if (get_env(&g_env, &l_env) == 1)
 		return (1);
 	while (1)
 	{
-		print_prompt(random_i, g_env, l_env);
+		print_prompt((int)nbr, g_env, l_env);
 		if (read_i(&av) == 1)
 			continue ;
 		if (shell(av, &g_env, &l_env) == 1)

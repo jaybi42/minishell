@@ -6,32 +6,12 @@
 /*   By: jguthert <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/11/30 16:37:39 by jguthert          #+#    #+#             */
-/*   Updated: 2016/01/03 13:35:06 by jguthert         ###   ########.fr       */
+/*   Updated: 2016/05/10 17:33:26 by jguthert         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stddef.h>
+#include "libft.h"
 #include <stdlib.h>
-
-static int			ft_nbrlen(int nbr)
-{
-	int				i;
-	unsigned int	tmp;
-
-	i = 1;
-	tmp = nbr;
-	if (nbr < 0)
-	{
-		tmp = -nbr;
-		i++;
-	}
-	while (tmp >= 10)
-	{
-		tmp /= 10;
-		i++;
-	}
-	return (i);
-}
 
 char				*ft_itoa(int nbr)
 {

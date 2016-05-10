@@ -6,7 +6,7 @@
 /*   By: jguthert <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/04/21 11:39:33 by jguthert          #+#    #+#             */
-/*   Updated: 2016/04/26 13:40:29 by jguthert         ###   ########.fr       */
+/*   Updated: 2016/05/10 15:44:39 by jguthert         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,6 @@ static	int		local_prompt(t_list *l_env)
 	{
 		if (ft_strcmp(((t_env *)l_env->content)->name, "USER") == 0)
 		{
-			ft_putstr("\033[1;33");
 			ft_putstr(((t_env *)l_env->content)->value);
 			return (0);
 		}
@@ -43,7 +42,7 @@ static	int		global_prompt(t_list *g_env)
 {
 	while (g_env != NULL)
 	{
-		if (ft_strcmp(((t_env *)g_env->content)->name, "HOST") == 0)
+		if (ft_strcmp(((t_env *)g_env->content)->name, "USER") == 0)
 		{
 			ft_putstr(((t_env *)g_env->content)->value);
 			return (0);

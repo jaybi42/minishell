@@ -6,7 +6,7 @@
 /*   By: jguthert <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/04/15 16:48:27 by jguthert          #+#    #+#             */
-/*   Updated: 2016/04/25 17:18:05 by jguthert         ###   ########.fr       */
+/*   Updated: 2016/05/10 17:42:27 by jguthert         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -102,6 +102,34 @@ static int			set_genv(t_list **e, char **environ)
 	return (0);
 }
 
+static void			set_shlvl(t_list *g_env)
+{
+	char			*new_value;
+	char			*temp;
+	t_env			*env;
+
+	while (g_env != NULL)
+	{
+		env = (t_env *)g_env->content;
+		if (ft_strcmp(env->name, "SHLVL") == 0 && env->value != NULL)
+		{
+			new_value = ft_itoa((ft_atoi(env->value) + 1));
+			ft_strdel(&env->value);
+			env->value = new_value;
+			temp = ft_strjoin(env->name, "=");
+			if (temp != NULL)
+			{
+				if (env->str != NULL)
+					ft_strdel(&env->str);
+				env->str = ft_strjoin(temp, new_value);
+				ft_strdel(&temp);
+			}
+			break ;
+		}
+		g_env = g_env->next;
+	}
+}
+
 int					get_env(t_list **g_env, t_list **l_env)
 {
     extern char		**environ;
@@ -114,9 +142,7 @@ int					get_env(t_list **g_env, t_list **l_env)
 	{
 		if (set_genv(g_env, environ) == 1)
 			return (1);
+		set_shlvl(*g_env);
 	}
-/*	show_list(*l_env);
-	ft_putendl("------------------------");
-	show_list(*g_env);*/
 	return (0);
 }
