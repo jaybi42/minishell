@@ -4,6 +4,7 @@
 *.cmo
 *.cmi
 *.cmx
+.nfs*
 .#*
 *.dump
 minishell
