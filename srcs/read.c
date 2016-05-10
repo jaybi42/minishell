@@ -6,7 +6,7 @@
 /*   By: jguthert <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/04/16 16:07:22 by jguthert          #+#    #+#             */
-/*   Updated: 2016/05/10 18:19:05 by jguthert         ###   ########.fr       */
+/*   Updated: 2016/05/10 20:09:48 by jguthert         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,7 +52,7 @@ static int	split_line(t_list **av_list, char *line)
 	return (0);
 }
 
-int			read_i(t_list **av_list)
+int			read_init(t_list **av_list)
 {
 	char	*line;
 

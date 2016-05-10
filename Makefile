@@ -6,7 +6,7 @@
 #    By: jguthert <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2015/12/30 15:25:02 by jguthert          #+#    #+#              #
-#    Updated: 2016/05/10 18:14:18 by jguthert         ###   ########.fr        #
+#    Updated: 2016/05/10 20:18:16 by jguthert         ###   ########.fr        #
 #                                                                              #
 #******************************************************************************#
 
@@ -43,7 +43,7 @@ OBJ = $(SRC:$(SRCPATH)/%.c=$(OBJPATH)/%.o)
 SRC = $(addprefix $(SRCPATH)/,$(SRCSFILES))
 
 SRCSFILES =				main.c			\
-						get_env.c		\
+						init_env.c		\
 						read.c			\
 						shell.c			\
 						builtin.c		\
@@ -53,6 +53,7 @@ SRCSFILES =				main.c			\
 						bi_setenv.c		\
 						bi_cd.c			\
 						bi_exit.c		\
+						bi_getenv.c		\
 						print_error.c	\
 						print_prompt.c	\
 						do_exec.c		\

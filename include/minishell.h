@@ -6,7 +6,7 @@
 /*   By: jguthert <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/02/08 17:56:10 by jguthert          #+#    #+#             */
-/*   Updated: 2016/05/10 18:23:08 by jguthert         ###   ########.fr       */
+/*   Updated: 2016/05/10 20:17:45 by jguthert         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,8 +57,8 @@ typedef struct	s_builtin
 **Desc: Parse read and env
 */
 
-int				read_i(t_list **av_list);
-int				get_env(t_list **g_env, t_list **l_env);
+int				read_init(t_list **av_list);
+int				init_env(t_list **g_env, t_list **l_env);
 t_av			init_av(char *cmd, char *av1, char *av2, int argc);
 
 /*
@@ -83,6 +83,7 @@ int				bi_env(t_av av, t_list **g_env, t_list **l_env);
 int				bi_unsetenv(t_av av, t_list **g_env, t_list **l_env);
 int				bi_setenv(t_av av, t_list **g_env, t_list **l_env);
 int				bi_exit(t_av av, t_list **g_env, t_list **l_env);
+int				bi_getenv(t_av av, t_list **g_env, t_list **l_env);
 
 /*
 **Name: Free list
