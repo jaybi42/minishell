@@ -6,7 +6,7 @@
 /*   By: jguthert <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/04/21 11:39:33 by jguthert          #+#    #+#             */
-/*   Updated: 2016/05/10 15:44:39 by jguthert         ###   ########.fr       */
+/*   Updated: 2016/05/10 19:54:32 by jguthert         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,12 +15,12 @@
 static void		get_color(int rand)
 {
 	int const	color[] = {31, 32, 33, 34, 35, 36, 37};
-	int const	style[] = {0, 1, 4};
+	int const	style[] = {0, 1};
 
 	ft_putstr("\033[");
-	ft_putnbr(style[rand % 3]);
+	ft_putnbr(style[rand % 2]);
 	ft_putstr(";");
-	ft_putnbr(color[rand % 7]);
+	ft_putnbr(color[rand % 6]);
 	ft_putstr("m");
 }
 
