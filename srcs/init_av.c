@@ -1,23 +1,24 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_tabdel.c                                        :+:      :+:    :+:   */
+/*   init_av.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jguthert <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2016/04/24 13:28:49 by jguthert          #+#    #+#             */
-/*   Updated: 2016/05/10 18:03:52 by jguthert         ###   ########.fr       */
+/*   Created: 2016/05/10 18:05:11 by jguthert          #+#    #+#             */
+/*   Updated: 2016/05/10 18:34:03 by jguthert         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "minishell.h"
 
-void		ft_tabdel(char **tab)
+t_av		init_av(char *cmd, char *av1, char *av2, int argc)
 {
-	int		i;
+	t_av	av;
 
-	i = 0;
-	while (tab[i] != NULL)
-		ft_strdel(&tab[i++]);
-	ft_strdel(tab);
+	av.all = (char *[]){cmd, av1, av2, NULL};
+	av.cmd = cmd;
+	av.arg = (char *[]){av1, av2, NULL};
+	av.argc = argc;
+	return (av);
 }

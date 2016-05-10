@@ -6,7 +6,7 @@
 /*   By: jguthert <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/02/08 17:56:10 by jguthert          #+#    #+#             */
-/*   Updated: 2016/05/10 16:22:25 by jguthert         ###   ########.fr       */
+/*   Updated: 2016/05/10 18:23:08 by jguthert         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,8 +20,6 @@
 # include <stdio.h> //
 
 # include "libft.h"
-
-# define AV_INIT(CMD,AV1,AV2,AC) ((t_av){CMD, (char *[]){AV1, AV2, NULL}, AC})
 
 typedef struct	s_env
 {
@@ -42,6 +40,7 @@ typedef struct	s_av
 	char		*cmd;
 	char		**arg;
 	int			argc;
+	char		**all;
 }				t_av;
 
 typedef int		(*t_bi_fptr)();
@@ -60,6 +59,7 @@ typedef struct	s_builtin
 
 int				read_i(t_list **av_list);
 int				get_env(t_list **g_env, t_list **l_env);
+t_av			init_av(char *cmd, char *av1, char *av2, int argc);
 
 /*
 **Name: Shell

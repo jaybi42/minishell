@@ -6,7 +6,7 @@
 /*   By: jguthert <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/04/16 19:08:23 by jguthert          #+#    #+#             */
-/*   Updated: 2016/04/18 18:25:33 by jguthert         ###   ########.fr       */
+/*   Updated: 2016/05/10 18:47:37 by jguthert         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,17 +23,10 @@ void		free_av(void *content, size_t size)
 	av = (t_av *)content;
 	if (av != NULL)
 	{
+		if (av->all != NULL)
+			ft_tabdel(av->all);
 		if (av->arg != NULL)
-		{
-			while (av->arg[i] != NULL)
-			{
-				ft_strdel(&av->arg[i]);
-				i++;
-			}
 			ft_strdel(av->arg);
-		}
-		if (av->cmd != NULL)
-			ft_strdel(&av->cmd);
 		free(content);
 		content = NULL;
 	}

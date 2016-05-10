@@ -6,7 +6,7 @@
 /*   By: jguthert <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/04/16 16:07:22 by jguthert          #+#    #+#             */
-/*   Updated: 2016/05/10 15:31:16 by jguthert         ###   ########.fr       */
+/*   Updated: 2016/05/10 18:19:05 by jguthert         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,21 +14,19 @@
 
 static void	fill_av(t_av *av, char *str)
 {
-	int		j;
 	int		k;
 
-	j = 0;
 	ft_bzero(av,sizeof(t_av));
-	while (ft_isblank(str[j]) == 1 && str[j] != '\0')
-		j++;
-	k = j;
-	while (ft_isspace(str[k]) == 0 && str[k] != '\0')
-		k++;
-	av->cmd = ft_strsub(str, j, k - j);
-	av->arg = ft_strsplit_blank(str + k);
-	k = -1;
-	while (av->arg != NULL && av->arg[++k] != NULL)
-		av->argc++;
+	av->all = ft_strsplit_blank(str);
+	k = 0;
+	if (av->all != NULL)
+	{
+		av->cmd = av->all[0];
+		av->arg = av->all + 1;
+		while (av->arg[k] != NULL)
+			k++;
+	}
+	av->argc = k;
 }
 
 static int	split_line(t_list **av_list, char *line)

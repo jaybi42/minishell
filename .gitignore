@@ -6,4 +6,4 @@
 *.cmx
 .#*
 *.dump
-ft_ls
+minishell
