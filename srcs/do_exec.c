@@ -6,7 +6,7 @@
 /*   By: jguthert <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/04/24 16:57:26 by jguthert          #+#    #+#             */
-/*   Updated: 2016/05/11 14:12:49 by jguthert         ###   ########.fr       */
+/*   Updated: 2016/05/11 14:16:09 by jguthert         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -99,7 +99,7 @@ int			do_exec(t_av av, t_list *g_env, t_list *l_env)
 	execve(av.cmd, av.arg, env);
 	path = get_allpath(av.cmd, str);
 	exec_path(av.all, path, env);
-	print_error(INIT_AV("minishell", av.all[1], NULL, 1), 7);
+	print_error(INIT_AV("minishell", av.cmd, NULL, 1), 7);
 	ft_tabdel(path);
 	ft_tabdel(env);
 	return (bi_exit(INIT_AV(NULL, NULL, NULL, 1), NULL, NULL));
