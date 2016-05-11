@@ -6,7 +6,7 @@
 /*   By: jguthert <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/04/16 19:50:22 by jguthert          #+#    #+#             */
-/*   Updated: 2016/05/10 19:46:46 by jguthert         ###   ########.fr       */
+/*   Updated: 2016/05/11 14:05:47 by jguthert         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,9 +27,9 @@ static int	mod_pwd(char *pwd, t_list **g_e, t_list **l_e)
 		temp = temp->next;
 	}
 	if (temp != NULL && env->value != NULL)
-		bi_setenv(init_av("setenv", "OLDPWD", env->value, 2), g_e, l_e);
+		bi_setenv(INIT_AV("setenv", "OLDPWD", env->value, 2), g_e, l_e);
 	else
-		bi_setenv(init_av("setenv", "PWD", pwd, 2), g_e, l_e);
+		bi_setenv(INIT_AV("setenv", "PWD", pwd, 2), g_e, l_e);
 	return (0);
 }
 
@@ -46,7 +46,7 @@ static int	go_back(t_list **g_e, t_list **l_e)
 	}
 	if (temp == NULL)
 		return (0);
-	bi_cd(init_av(NULL, ((t_env *)temp->content)->value, NULL, 1), g_e, l_e);
+	bi_cd(INIT_AV(NULL, ((t_env *)temp->content)->value, NULL, 1), g_e, l_e);
 	return (0);
 }
 
@@ -63,7 +63,7 @@ static int	go_home(t_list **g_e, t_list **l_e)
 	}
 	if (temp == NULL)
 		return (0);
-	bi_cd(init_av(NULL, ((t_env *)temp->content)->value, NULL, 1), g_e, l_e);
+	bi_cd(INIT_AV(NULL, ((t_env *)temp->content)->value, NULL, 1), g_e, l_e);
 	return (0);
 }
 

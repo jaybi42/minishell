@@ -6,7 +6,7 @@
 /*   By: jguthert <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/02/08 17:56:10 by jguthert          #+#    #+#             */
-/*   Updated: 2016/05/11 13:01:06 by jguthert         ###   ########.fr       */
+/*   Updated: 2016/05/11 14:11:59 by jguthert         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,10 @@
 # include <stdio.h> //
 
 # include "libft.h"
+
+# define INIT_ALL(CMD,AV1,AV2) (char *[]){CMD, AV1, AV2, NULL}
+# define INIT_ARG(AV1,AV2) (char *[]){AV1, AV2, NULL}
+# define INIT_AV(A,B,C,D) (t_av){A, INIT_ARG(B, C), D, INIT_ALL(A, B, C)}
 
 typedef void	(*sig_t) (int);
 
@@ -61,7 +65,6 @@ typedef struct	s_builtin
 
 int				read_init(t_list **av_list);
 int				init_env(t_list **g_env, t_list **l_env);
-t_av			init_av(char *cmd, char *av1, char *av2, int argc);
 
 /*
 **Name: Shell

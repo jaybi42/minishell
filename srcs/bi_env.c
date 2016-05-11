@@ -6,7 +6,7 @@
 /*   By: jguthert <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/04/16 19:53:06 by jguthert          #+#    #+#             */
-/*   Updated: 2016/05/10 18:24:10 by jguthert         ###   ########.fr       */
+/*   Updated: 2016/05/11 14:13:48 by jguthert         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,7 @@ static int		set_new_arg(char *arg, t_list **g_env, t_list **l_env)
 		return (1);
 	my_cmd = ft_strsub(arg, 0, i);
 	my_arg = ft_strchr(arg, '=') + 1;
-	bi_setenv(init_av("setenv", my_cmd, my_arg, 2), g_env, l_env);
+	bi_setenv(INIT_AV("setenv", my_cmd, my_arg, 2), g_env, l_env);
 	if (my_cmd != NULL)
 		ft_strdel(&my_cmd);
 	return (0);
@@ -53,7 +53,10 @@ static int		parse_env(t_av av, t_list **g_env, t_list **l_env)
 		if (ft_strncmp("-i", av.arg[i], 2) == 0)
 			ft_lstdel(g_env, free_env);
 		else if (ft_strncmp("-u", av.arg[i], 2) == 0)
-			bi_unsetenv(init_av(NULL, av.arg[++i], NULL, 1), g_env, l_env);
+		{
+			i++;
+			bi_unsetenv(INIT_AV(NULL, av.arg[i], NULL, 1), g_env, l_env);
+		}
 		else
 			break ;
 	}
@@ -80,7 +83,7 @@ int				bi_env(t_av av, t_list **g_env, t_list **l_env)
 		}
 		else
 			print_env(*g_env);
-		bi_exit(init_av(NULL, NULL, NULL, 0), NULL, NULL);
+		bi_exit(INIT_AV(NULL, NULL, NULL, 0), NULL, NULL);
 	}
 	else if (ret == -1)
 		return (print_error(av, 6));

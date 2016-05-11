@@ -6,7 +6,7 @@
 /*   By: jguthert <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/05/11 12:59:02 by jguthert          #+#    #+#             */
-/*   Updated: 2016/05/11 13:01:32 by jguthert         ###   ########.fr       */
+/*   Updated: 2016/05/11 14:13:07 by jguthert         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,10 +16,10 @@
 static void     is_sig(int signum)
 {
     if (signum == SIGINT)
-        ft_putchar('\n');
+		ft_putstr_fd("\n", 2);
 }
 
-void			catch_sig(void)
+void			catch_sig()
 {
 	signal(SIGINT, is_sig);
 	signal(SIGSTOP, SIG_IGN);
