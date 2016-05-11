@@ -6,7 +6,7 @@
 /*   By: jguthert <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/02/08 17:56:10 by jguthert          #+#    #+#             */
-/*   Updated: 2016/05/10 21:05:13 by jguthert         ###   ########.fr       */
+/*   Updated: 2016/05/11 13:01:06 by jguthert         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,6 +72,7 @@ t_av			init_av(char *cmd, char *av1, char *av2, int argc);
 int				shell(t_list *av_list, t_list **g_env, t_list **l_env);
 int				do_exec(t_av av, t_list *g_env, t_list *l_env);
 void			print_prompt(int rand, t_list *g_env, t_list *l_env);
+void			catch_sig(void);
 
 /*
 **Name: builtin

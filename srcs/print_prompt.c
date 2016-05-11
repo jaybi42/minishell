@@ -6,14 +6,14 @@
 /*   By: jguthert <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/04/21 11:39:33 by jguthert          #+#    #+#             */
-/*   Updated: 2016/05/11 11:36:51 by jguthert         ###   ########.fr       */
+/*   Updated: 2016/05/11 13:00:13 by jguthert         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 #include <signal.h>
 
-static void				get_color(int rand)
+static void		get_color(int rand)
 {
 	int const	color[] = {31, 32, 33, 34, 35, 36, 37};
 	int const	style[] = {0, 1};
@@ -25,7 +25,7 @@ static void				get_color(int rand)
 	ft_putstr("m");
 }
 
-static	int				local_prompt(t_list *l_env)
+static	int		local_prompt(t_list *l_env)
 {
 	while (l_env != NULL)
 	{
@@ -39,7 +39,7 @@ static	int				local_prompt(t_list *l_env)
 	return (1);
 }
 
-static	int				global_prompt(t_list *g_env)
+static	int		global_prompt(t_list *g_env)
 {
 	while (g_env != NULL)
 	{
@@ -53,10 +53,8 @@ static	int				global_prompt(t_list *g_env)
 	return (1);
 }
 
-void					print_prompt(int rand, t_list *g_env, t_list *l_env)
+void			print_prompt(int rand, t_list *g_env, t_list *l_env)
 {
-	struct sigaction	sig;
-
 	get_color(rand);
 	if (global_prompt(g_env) == 0)
 		;
