@@ -6,7 +6,7 @@
 /*   By: jguthert <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/04/16 17:01:52 by jguthert          #+#    #+#             */
-/*   Updated: 2016/05/10 21:07:45 by jguthert         ###   ########.fr       */
+/*   Updated: 2016/05/11 11:21:59 by jguthert         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,8 +25,6 @@ static int	do_shell(t_av av, t_list **g_env, t_list **l_env)
 		return (print_error(av, 6));
 	else
 		ret = wait(NULL);
-	if (ret == 1)
-		return (print_error(init_av("minishell", av.cmd, NULL, 1), 7));
 	return (ret);
 }
 
@@ -38,7 +36,7 @@ int			shell(t_list *av_list, t_list **g_env, t_list **l_env)
 	while (av_list != NULL)
 	{
 		av = *((t_av *)av_list->content);
-		if (av.argc == 0)
+		if (av.all == NULL)
 			return (0);
 		ret = builtin(av, g_env, l_env);
 		if (ret == 1)
