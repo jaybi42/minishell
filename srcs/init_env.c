@@ -6,7 +6,7 @@
 /*   By: jguthert <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/04/15 16:48:27 by jguthert          #+#    #+#             */
-/*   Updated: 2016/05/10 20:09:23 by jguthert         ###   ########.fr       */
+/*   Updated: 2016/05/12 12:58:47 by jguthert         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,8 @@ static char			**get_info(void)
 		return (NULL);
 	tab = (char **)malloc(sizeof(char *) * 7);
 	tab[6] = NULL;
-	tab[0] = ft_strdup("/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/bin:/usr/local/munki");
+	tab[0] = ft_strdup\
+("/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/bin:/usr/local/munki");
 	tab[1] = ft_strdup(pw->pw_dir);
 	tab[2] = ft_strdup(pw->pw_name);
 	tab[3] = ft_strdup(pw->pw_name);
@@ -69,7 +70,7 @@ static int			set_lenv(t_list **e)
 		i++;
 	}
 	if (tab != NULL)
-	free(tab);
+		free(tab);
 	tab = NULL;
 	return (0);
 }
@@ -132,7 +133,7 @@ static void			set_shlvl(t_list *g_env)
 
 int					init_env(t_list **g_env, t_list **l_env)
 {
-    extern char		**environ;
+	extern char		**environ;
 
 	*l_env = NULL;
 	*g_env = NULL;

@@ -6,7 +6,7 @@
 /*   By: jguthert <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/04/16 19:50:22 by jguthert          #+#    #+#             */
-/*   Updated: 2016/05/11 14:05:47 by jguthert         ###   ########.fr       */
+/*   Updated: 2016/05/12 12:52:52 by jguthert         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,7 @@ static int	mod_pwd(char *pwd, t_list **g_e, t_list **l_e)
 
 static int	go_back(t_list **g_e, t_list **l_e)
 {
-	t_list  *temp;
+	t_list	*temp;
 
 	temp = *g_e;
 	while (temp != NULL)
@@ -52,7 +52,7 @@ static int	go_back(t_list **g_e, t_list **l_e)
 
 static int	go_home(t_list **g_e, t_list **l_e)
 {
-	t_list  *temp;
+	t_list	*temp;
 
 	temp = *l_e;
 	while (temp != NULL)

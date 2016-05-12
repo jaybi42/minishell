@@ -6,7 +6,7 @@
 /*   By: jguthert <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/04/16 16:07:22 by jguthert          #+#    #+#             */
-/*   Updated: 2016/05/10 21:05:37 by jguthert         ###   ########.fr       */
+/*   Updated: 2016/05/12 12:56:10 by jguthert         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@ static void	fill_av(t_av *av, char *str)
 {
 	int		k;
 
-	ft_bzero(av,sizeof(t_av));
+	ft_bzero(av, sizeof(t_av));
 	av->all = ft_strsplit_blank(str);
 	k = 0;
 	if (av->all != NULL)

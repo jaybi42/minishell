@@ -6,7 +6,7 @@
 /*   By: jguthert <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/04/13 15:36:17 by jguthert          #+#    #+#             */
-/*   Updated: 2016/05/11 13:01:56 by jguthert         ###   ########.fr       */
+/*   Updated: 2016/05/12 12:25:31 by jguthert         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ int				main(void)
 	nbr = rand() % 2147483648;
 	if (init_env(&g_env, &l_env) == 1)
 		return (1);
-	catch_sig();
+	catch_sig(nbr, g_env, l_env);
 	while (1)
 	{
 		print_prompt(nbr, g_env, l_env);
