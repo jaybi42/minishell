@@ -6,17 +6,19 @@
 /*   By: jguthert <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/04/16 19:50:22 by jguthert          #+#    #+#             */
-/*   Updated: 2016/05/12 12:52:52 by jguthert         ###   ########.fr       */
+/*   Updated: 2016/05/19 16:11:57 by jguthert         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 #include "unistd.h"
+#include <pwd.h>
 
-static int	mod_pwd(char *pwd, t_list **g_e, t_list **l_e)
+static int	mod_pwd(t_list **g_e, t_list **l_e)
 {
 	t_list	*temp;
 	t_env	*env;
+	char	*pwd;
 
 	temp = *g_e;
 	while (temp != NULL)
@@ -28,8 +30,8 @@ static int	mod_pwd(char *pwd, t_list **g_e, t_list **l_e)
 	}
 	if (temp != NULL && env->value != NULL)
 		bi_setenv(INIT_AV("setenv", "OLDPWD", env->value, 2), g_e, l_e);
-	else
-		bi_setenv(INIT_AV("setenv", "PWD", pwd, 2), g_e, l_e);
+	pwd = ft_strdup(getwd(NULL));
+	bi_setenv(INIT_AV("setenv", "PWD", pwd, 2), g_e, l_e);
 	return (0);
 }
 
@@ -46,7 +48,8 @@ static int	go_back(t_list **g_e, t_list **l_e)
 	}
 	if (temp == NULL)
 		return (0);
-	bi_cd(INIT_AV(NULL, ((t_env *)temp->content)->value, NULL, 1), g_e, l_e);
+	ft_putendl(((t_env *)temp->content)->value);
+	bi_cd(INIT_AV("cd", ((t_env *)temp->content)->value, NULL, 1), g_e, l_e);
 	return (0);
 }
 
@@ -63,7 +66,7 @@ static int	go_home(t_list **g_e, t_list **l_e)
 	}
 	if (temp == NULL)
 		return (0);
-	bi_cd(INIT_AV(NULL, ((t_env *)temp->content)->value, NULL, 1), g_e, l_e);
+	bi_cd(INIT_AV("cd", ((t_env *)temp->content)->value, NULL, 1), g_e, l_e);
 	return (0);
 }
 
@@ -83,8 +86,9 @@ int			bi_cd(t_av av, t_list **g_env, t_list **l_env)
 		return (print_error(av, 3));
 	if (*av.arg != NULL)
 	{
-		chdir(*av.arg);
-		return (mod_pwd(*av.arg, g_env, l_env));
+		if (chdir(*av.arg) == 0)
+			mod_pwd(g_env, l_env);
+		return (0);
 	}
 	return (0);
 }

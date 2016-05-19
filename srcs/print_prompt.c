@@ -6,7 +6,7 @@
 /*   By: jguthert <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/04/21 11:39:33 by jguthert          #+#    #+#             */
-/*   Updated: 2016/05/11 13:00:13 by jguthert         ###   ########.fr       */
+/*   Updated: 2016/05/19 15:35:16 by jguthert         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,30 +25,29 @@ static void		get_color(int rand)
 	ft_putstr("m");
 }
 
-static	int		local_prompt(t_list *l_env)
+static	int		print_value(t_list *g_env, t_list *l_env, char *key)
 {
-	while (l_env != NULL)
-	{
-		if (ft_strcmp(((t_env *)l_env->content)->name, "USER") == 0)
-		{
-			ft_putstr(((t_env *)l_env->content)->value);
-			return (0);
-		}
-		l_env = l_env->next;
-	}
-	return (1);
-}
+	t_list		*temp;
 
-static	int		global_prompt(t_list *g_env)
-{
-	while (g_env != NULL)
+	temp = g_env;
+	while (temp != NULL)
 	{
-		if (ft_strcmp(((t_env *)g_env->content)->name, "USER") == 0)
+		if (ft_strcmp(((t_env *)temp->content)->name, key) == 0)
 		{
-			ft_putstr(((t_env *)g_env->content)->value);
+			ft_putstr(((t_env *)temp->content)->value);
 			return (0);
 		}
-		g_env = g_env->next;
+		temp = temp->next;
+	}
+	temp = l_env;
+	while (temp != NULL)
+	{
+		if (ft_strcmp(((t_env *)temp->content)->name, key) == 0)
+		{
+			ft_putstr(((t_env *)temp->content)->value);
+			return (0);
+		}
+		temp = temp->next;
 	}
 	return (1);
 }
@@ -56,10 +55,14 @@ static	int		global_prompt(t_list *g_env)
 void			print_prompt(int rand, t_list *g_env, t_list *l_env)
 {
 	get_color(rand);
-	if (global_prompt(g_env) == 0)
-		;
-	else if (local_prompt(l_env) == 0)
-		;
+	if (print_value(g_env, l_env, "PWD") == 0)
+	{
+		ft_putstr("\033[0m");
+		get_color(rand + 2);
+		ft_putchar('@');
+	}
+	print_value(g_env, l_env, "USER");
 	ft_putstr("$>");
 	ft_putstr("\033[0m");
+	ft_putchar('\n');
 }

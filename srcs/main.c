@@ -6,7 +6,7 @@
 /*   By: jguthert <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/04/13 15:36:17 by jguthert          #+#    #+#             */
-/*   Updated: 2016/05/12 12:25:31 by jguthert         ###   ########.fr       */
+/*   Updated: 2016/05/19 15:06:32 by jguthert         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ int				main(void)
 	{
 		print_prompt(nbr, g_env, l_env);
 		if (read_init(&av) == 1)
-			continue ;
+			exit(0);
 		if (shell(av, &g_env, &l_env) == 1)
 			return (1);
 		ft_lstdel(&av, free_av);
